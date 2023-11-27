@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using RealEstate.Models;
 
 namespace RealEstate.Data
 {
@@ -9,5 +10,6 @@ namespace RealEstate.Data
             : base(options)
         {
         }
+        public DbSet<UserModel> Users { get; set; }
     }
 }

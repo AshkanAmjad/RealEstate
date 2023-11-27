@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RealEstate.Data;
+using RealEstate.Models;
 
 namespace RealEstate
 {
@@ -16,7 +17,7 @@ namespace RealEstate
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(/*options => options.SignIn.RequireConfirmedAccount = false*/)
+            builder.Services.AddDefaultIdentity<UserModel>(/*options => options.SignIn.RequireConfirmedAccount = false*/)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddRazorPages();
 
