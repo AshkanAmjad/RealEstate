@@ -3,15 +3,18 @@
 @{
     ViewData["Title"] = "Register";
 }
-
 <h1>@ViewData["Title"]</h1>
-
 <div class="row">
     <div class="col-md-4">
         <form id="registerForm" asp-route-returnUrl="@Model.Input.ReturnUrl" method="post">
             <h2>Create a new account.</h2>
             <hr />
             <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+            <div class="form-floating mb-3">
+                <input asp-for="Input.FullName" class="form-control" autocomplete="fullname" aria-required="true" placeholder="fullName" />
+                <label asp-for="Input.FullName">Full Name</label>
+                <span asp-validation-for="Input.FullName" class="text-danger"></span>
+            </div>
             <div class="form-floating mb-3">
                 <input asp-for="Input.PhoneNumber" class="form-control" autocomplete="phonenumber" aria-required="true" placeholder="09*********" maxlength="11" />
                 <label asp-for="Input.PhoneNumber">Phone Number</label>
@@ -26,11 +29,6 @@
                 <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" placeholder="password" />
                 <label asp-for="Input.ConfirmPassword">Confirm Password</label>
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <input asp-for="Input.FullName" class="form-control" autocomplete="fullname" aria-required="true" placeholder="fullName" />
-                <label asp-for="Input.FullName">Full Name</label>
-                <span asp-validation-for="Input.FullName" class="text-danger"></span>
             </div>
             <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
         </form>

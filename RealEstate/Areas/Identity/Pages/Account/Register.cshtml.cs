@@ -6,26 +6,35 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using RealEstate.Data;
 using RealEstate.Models;
 using RealEstate.Models.ViewModel;
+using RealEstate.Utilities;
 
 namespace RealEstate.Areas.Identity.Pages.Account
 {
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<UserModel> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly ApplicationDbContext _db;
         private readonly UserManager<UserModel> _userManager;
         private readonly IUserStore<UserModel> _userStore;
+
 
         public RegisterModel(
             UserManager<UserModel> userManager,
             IUserStore<UserModel> userStore,
-            SignInManager<UserModel> signInManager
+            SignInManager<UserModel> signInManager,
+            RoleManager<IdentityRole> roleManager,
+            ApplicationDbContext db
             )
         {
             _userManager = userManager;
             _userStore = userStore;
             _signInManager = signInManager;
+            _roleManager = roleManager;
+            _db = db;
         }
 
         [BindProperty]
@@ -49,11 +58,21 @@ namespace RealEstate.Areas.Identity.Pages.Account
                 user.PhoneNumber = Input.PhoneNumber;
                 user.FullName = Input.FullName;
                 var result = await _userManager.CreateAsync(user, Input.Password);
-
                 if (result.Succeeded)
                 {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                    #region
+                    if (!await _roleManager.RoleExistsAsync(Roles.Admin))
+                        await _roleManager.CreateAsync(new IdentityRole(Roles.Admin));
+                    if (!await _roleManager.RoleExistsAsync(Roles.User))
+                        await _roleManager.CreateAsync(new IdentityRole(Roles.User));
+                    if (_db.Users.ToList().Count == 1)
+                        await _userManager.AddToRoleAsync(user, Roles.Admin);
+                    else
+                        await _userManager.AddToRoleAsync(user, Roles.User);
+                    #endregion
+
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return LocalRedirect(returnUrl);
                 }
                 foreach (var error in result.Errors)
                 {
