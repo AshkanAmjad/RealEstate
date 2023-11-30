@@ -57,6 +57,7 @@ namespace RealEstate.Areas.Identity.Pages.Account
                 await _userStore.SetUserNameAsync(user, Input.PhoneNumber, CancellationToken.None);
                 user.PhoneNumber = Input.PhoneNumber;
                 user.FullName = Input.FullName;
+                user.Email = Input.Email;
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
