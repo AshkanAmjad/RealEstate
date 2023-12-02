@@ -11,5 +11,6 @@ namespace RealEstate.Data
         {
         }
         public DbSet<UserModel> Users { get; set; }
+        public DbSet<EstateModel> Estate { get; set; }
     }
 }

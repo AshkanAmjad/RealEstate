@@ -5,9 +5,9 @@ namespace RealEstate.Models
 {
     public class UserModel:IdentityUser
     {
-        [Required(ErrorMessage ="تکمیل این ورودی اجباری است.")]
-        [Display(Name ="نام و نام خانوادگی")]
-        [MaxLength(200,ErrorMessage ="ورودی {0} نمی تواند بیشتر از {1} حرف باشد.")]
+        [Required(ErrorMessage = "Completion of this entry is required.")]
+        [Display(Name ="Full name ")]
+        [MaxLength(200, ErrorMessage = "{0} cannot be longer than {1} characters.")]
         public string FullName { get; set; }
     }
 }
