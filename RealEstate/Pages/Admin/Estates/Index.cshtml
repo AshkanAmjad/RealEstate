@@ -1,0 +1,101 @@
+﻿@page
+@model RealEstate.Pages.Admin.Estates.IndexModel
+
+@{
+    ViewData["Title"] = "Admin page";
+}
+<div class="row mt-5 mx-5">
+    <div class="col-lg-3 col-md-3 col-12">
+        <div class="list-group p-0 mb-5 ">
+            <a href="#" class="active list-group-item list-group-item-action bg-danger border border-danger">
+                <i class="fa fa-home mx-2"></i>
+                Estates Management
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-9 col-md-9 col-12">
+        <div class="card shadow">
+            <div class="card-header d-flex">
+                <a asp-page="Create" class="btn btn-outline-primary">
+                    <i class="fa fa-plus"></i>
+                    Add
+                </a>
+                <h4 class="mx-auto fw-bold">Estates Management</h4>
+            </div>
+            <div class="card-body">
+                @if (Model.IndexDto.Any())
+                {
+                    <table class="table table-bordered table-striped table-hover mx-auto text-center">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <i class="fa fa-image mx-2"></i>
+                                    Image
+                                </th>
+                                <th>
+                                    <i class="fa fa-map-marker"></i>
+                                    Address
+                                </th>
+                                <th>
+                                    <i class="fa fa-arrows mx-2"></i>
+                                    Metrage
+                                </th>
+                                <th>
+                                    <i class="fa fa-money mx-2"></i>
+                                    Price
+                                </th>
+                                <th>
+                                    <i class="fa fa-check-square-o mx-2"></i>
+                                    Mangement
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.IndexDto)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="" class="card-img-overlay" />
+                                    </td>
+                                    <td>
+                                        @item.Address
+                                    </td>
+                                    <td>
+                                        @item.Metrage
+                                    </td>
+
+                                    <td>
+                                        @item.Price
+                                        <span class="fw-bold">$</span>
+                                    </td>
+                                    <td>
+                                        <div class="d-md-flex">
+                                            <a asp-page="Details" asp-route-Id="@item.Id" class="btn btn-outline-primary col-md-4 col-12 rounded-0">
+                                                <i class="fa fa-list fa-lg"></i>
+                                            </a>
+                                            <a asp-page="Edit" asp-route-Id="@item.Id" class="btn btn-outline-primary col-md-4 col-12 rounded-0">
+                                                <i class="fa fa-edit fa-lg"></i>
+                                            </a>
+                                            <a asp-page="Delete" asp-route-Id="@item.Id" class="btn btn-outline-primary col-md-4 col-12 rounded-0">
+                                                <i class="fa fa-trash fa-lg"></i>
+                                            </a>
+                                        </div> 
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <h5 class="text-center w-75 alert mx-auto alert-danger shadow">
+                        <i class="fa fa-exclamation-triangle"></i>
+                        There is no item available.
+                    </h5>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
