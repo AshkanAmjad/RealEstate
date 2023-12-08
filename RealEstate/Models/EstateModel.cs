@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RealEstate.Models
 {
@@ -29,5 +30,11 @@ namespace RealEstate.Models
         [Display(Name ="Address")]
         [MaxLength(1000, ErrorMessage = "{0} cannot be longer than {1} characters.")]
         public string Address { get; set; }
+
+        public int CategoryId {  get; set; }
+        #region Relation
+        [ForeignKey(nameof(CategoryId))]
+        public CategoryModel? Category { get; set; }
+        #endregion
     }
 }

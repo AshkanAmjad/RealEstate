@@ -4,17 +4,74 @@
 @{
     ViewData["Title"] = "Admin page";
 }
-<div class="row mt-5 mx-5">
-    <div class="col-lg-3 col-md-3 col-12">
+@if (ViewData["successCreated"] is true)
+{
+    <div class="alert alert-success w-25 text-center mx-auto mt-2" id="alertSuccessCreated">
+        <p class="help-block my-0">
+            <i class="fa fa-check-circle-o mx-2"></i>Successfully created.
+        </p>
+    </div>
+    <script>
+        var delay = 5000;
+        setTimeout(function () { document.getElementById("alertSuccessCreated").classList.add("hidden") }, delay);
+    </script>
+}
+@if (ViewData["errorCreated"] is true)
+{
+    <div class="alert alert-danger w-25 text-center mx-auto mt-2" id="alertErrorCreated">
+        <p class="help-block my-0">
+            <i class="fa fa-times-circle-o mx-2"></i>Error creating
+        </p>
+    </div>
+    <script>
+        var delay = 5000;
+        setTimeout(function () { document.getElementById("alertErrorCreated").classList.add("hidden") }, delay);
+    </script>
+}
+@if (ViewData["successEdited"] is true)
+{
+    <div class="alert alert-success p-1 text-center mx-auto mt-2" id="alertSuccessEdited">
+        <p class="help-block my-0">
+            <i class="fa fa-check-circle-o mx-2"></i>Successfully edited.
+        </p>
+    </div>
+    <script>
+        var delay = 5000;
+        setTimeout(function () { document.getElementById("alertSuccessEdited").classList.add("hidden") }, delay);
+    </script>
+}
+@if (ViewData["errorEdited"] is true)
+{
+    <div class="alert alert-danger p-1 text-center mx-auto mt-2" id="alerterrorEdited">
+        <p class="help-block my-0">
+            <i class="fa fa-times-circle-o mx-2"></i>Erroe editing.
+        </p>
+    </div>
+    <script>
+        var delay = 5000;
+        setTimeout(function () { document.getElementById("alertSuccessEdited").classList.add("hidden") }, delay);
+    </script>
+}
+<div class="d-sm-none d-flex flex-column">
+    <div class="alert alert-warning  shadow d-flex">
+        <i class="fa fa-warning mx-3 my-1 "></i>
+        <p>
+            The display dimensions are not suitable for your page. Please hold your device horizontally.
+        </p>
+    </div>
+    <img src="/images/icon/rotating-warning.png" class="mx-auto my-4" />
+</div>
+<div class="row my-5 mx-5 d-none d-sm-flex">
+    <div class="col-xl-3 col-12">
         <div class="list-group p-0 mb-5 ">
             <a href="#" class="active list-group-item list-group-item-action bg-danger border border-danger">
-                <i class="fa fa-home mx-2"></i>
+                <i class="fa fa-home me-2"></i>
                 Estates Management
             </a>
         </div>
     </div>
 
-    <div class="col-lg-9 col-md-9 col-12">
+    <div class="col-xl-9 col-12">
         <div class="card shadow">
             <div class="card-header d-flex">
                 <a asp-page="Create" class="btn btn-outline-primary">
@@ -26,7 +83,7 @@
             <div class="card-body">
                 @if (Model.IndexDto.Any())
                 {
-                    <table class="table table-bordered table-striped table-hover mx-auto text-center">
+                    <table class="table table-bordered table-striped table-hover mx-auto  text-center">
                         <thead>
                             <tr>
                                 <th>
@@ -56,7 +113,7 @@
                             {
                                 <tr>
                                     <td>
-                                        <img src="" class="card-img-overlay" />
+                                        <img src="/images/Estates/@item.Image" class="img-thumbnail my-1 zoom" width="128px" height="128px" />
                                     </td>
                                     <td>
                                         @item.Address
@@ -70,7 +127,7 @@
                                         <span class="fw-bold">$</span>
                                     </td>
                                     <td>
-                                        <div class="d-md-flex">
+                                        <div class="d-md-flex my-xl-4">
                                             <a asp-page="Details" asp-route-Id="@item.Id" class="btn btn-outline-primary col-md-4 col-12 rounded-0">
                                                 <i class="fa fa-list fa-lg"></i>
                                             </a>
@@ -80,7 +137,7 @@
                                             <a asp-page="Delete" asp-route-Id="@item.Id" class="btn btn-outline-primary col-md-4 col-12 rounded-0">
                                                 <i class="fa fa-trash fa-lg"></i>
                                             </a>
-                                        </div> 
+                                        </div>
                                     </td>
                                 </tr>
                             }

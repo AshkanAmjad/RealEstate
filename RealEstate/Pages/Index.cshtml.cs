@@ -5,16 +5,17 @@ namespace RealEstate.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
-
-        public IndexModel(ILogger<IndexModel> logger)
+        #region Constructor
+        public IndexModel()
         {
-            _logger = logger;
         }
+        #endregion
 
+        #region OnGet
         public void OnGet()
         {
 
         }
+        #endregion
     }
 }

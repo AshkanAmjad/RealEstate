@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RealEstate.Data;
 using RealEstate.Models;
+using RealEstate.Services.Implementation;
+using RealEstate.Services.Interface;
 
 namespace RealEstate
 {
@@ -21,7 +23,7 @@ namespace RealEstate
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddRazorPages();
-
+            builder.Services.AddScoped<IManagementService, ManagementService>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
