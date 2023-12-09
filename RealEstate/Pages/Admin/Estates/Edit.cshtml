@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div class="col-xl-9 col-12">
+    <div class="col-xl-9 col-12 mb-5">
         <div class="card shadow">
             <div class="card-header d-flex">
                 <h4 class="mx-auto fw-bold">Estates Management</h4>
@@ -30,9 +30,9 @@
                             <div class="row">
                                 <div class="col-5 col-sm-4">
                                     <i class="fa fa-check-circle-o"></i>
-                                    <label asp-for="ViewModel.Estate.Title" class="form-label">Title :</label>
+                                    <label asp-for="ViewModel.Estate.Title" class="form-label fs-7">Title :</label>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-7 col-sm-8 ">
                                     <input asp-for="ViewModel.Estate.Title" class="form-control" placeholder="Enter Title ..." />
                                     <span class="valid-feedback text-danger" asp-validation-for="ViewModel.Estate.Title"></span>
                                 </div>
@@ -40,7 +40,7 @@
                             <div class="row my-3">
                                 <div class="col-5 col-sm-4">
                                     <i class="fa fa-check-circle-o"></i>
-                                    <label asp-for="ViewModel.SelectedCategory" class="form-label">Type :</label>
+                                    <label asp-for="ViewModel.SelectedCategory" class="form-label fs-7">Type :</label>
                                 </div>
                                 <div class="col-7 col-sm-8">
                                     <select asp-for="ViewModel.SelectedCategory" asp-items="Model.ViewModel.CategoryOptions" class="form-control">
@@ -50,7 +50,7 @@
                             <div class="row my-3">
                                 <div class="col-5 col-sm-4">
                                     <i class="fa fa-check-circle-o"></i>
-                                    <label asp-for="ViewModel.Estate.Price" class="form-label">Price :</label>
+                                    <label asp-for="ViewModel.Estate.Price" class="form-label  fs-7">Price :</label>
                                 </div>
                                 <div class="col-7 col-sm-8">
                                     <input asp-for="ViewModel.Estate.Price" class="form-control" placeholder="Enter Metrage ..." />
@@ -60,7 +60,7 @@
                             <div class="row my-3">
                                 <div class="col-5 col-sm-4">
                                     <i class="fa fa-check-circle-o"></i>
-                                    <label asp-for="ViewModel.Estate.Metrage" class="form-label">Metrage :</label>
+                                    <label asp-for="ViewModel.Estate.Metrage" class="form-label  fs-7">Metrage :</label>
                                 </div>
                                 <div class="col-7 col-sm-8">
                                     <input asp-for="ViewModel.Estate.Metrage" class="form-control" placeholder="Enter Metrage ..." />
@@ -72,7 +72,7 @@
                             <div class="row">
                                 <div class="col-5 col-sm-4">
                                     <i class="fa fa-check-circle-o"></i>
-                                    <label asp-for="ViewModel.Estate.Address" class="form-label">Address :</label>
+                                    <label asp-for="ViewModel.Estate.Address" class="form-label fs-7">Address :</label>
                                 </div>
                                 <div class="col-7 col-sm-8">
                                     <textarea asp-for="ViewModel.Estate.Address" class="form-control" placeholder="Enter Address ..."></textarea>
@@ -82,7 +82,7 @@
                             <div class="row my-3">
                                 <div class="col-5 col-sm-4">
                                     <i class="fa fa-check-circle-o"></i>
-                                    <label asp-for="ViewModel.Estate.Description" class="form-label">Description :</label>
+                                    <label asp-for="ViewModel.Estate.Description" class="form-label fs-7">Description :</label>
                                 </div>
                                 <div class="col-7 col-sm-8">
                                     <textarea asp-for="ViewModel.Estate.Description" class="form-control" placeholder="Enter Description ..."></textarea>
@@ -91,11 +91,11 @@
                             <div class="row my-3">
                                 <div class="col-5 col-sm-4">
                                     <i class="fa fa-check-circle-o"></i>
-                                    <label class="form-label">Images :</label>
+                                    <label class="form-label fs-7">Images :</label>
                                 </div>
                                 <div class="col-7 col-sm-8">
                                     <input asp-for="ViewModel.ImgUp" id="ImgUp" type="file" accept="image" class="form-control" />
-                                    <img src="/images/Estates/@Model.ViewModel.Estate.Image" id="imgPreview" class="border my-2 mx-auto rounded" width="128px" height="128px" />
+                                    <img src="/images/Thumb/@Model.ViewModel.Estate.Image" id="imgPreview" class="border my-2 mx-auto rounded" width="128px" height="128px" />
                                 </div>
                             </div>
 

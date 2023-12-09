@@ -56,7 +56,7 @@
     <div class="alert alert-warning  shadow d-flex">
         <i class="fa fa-warning mx-3 my-1 "></i>
         <p>
-            The display dimensions are not suitable for your page. Please hold your device horizontally.
+            The display dimensions are not suitable for your page, Please hold your device horizontally.
         </p>
     </div>
     <img src="/images/icon/rotating-warning.png" class="mx-auto my-4" />
@@ -87,23 +87,27 @@
                         <thead>
                             <tr>
                                 <th>
-                                    <i class="fa fa-image mx-2"></i>
+                                    <i class="fa fa-image mx-2 d-sm-block d-lg-inline "></i>
                                     Image
                                 </th>
                                 <th>
-                                    <i class="fa fa-map-marker"></i>
+                                    <i class="fa fa-home mx-2 d-sm-block d-lg-inline"></i>
+                                    Type
+                                </th>
+                                <th>
+                                    <i class="fa fa-map-marker mx-2 d-sm-block d-lg-inline"></i>
                                     Address
                                 </th>
                                 <th>
-                                    <i class="fa fa-arrows mx-2"></i>
+                                    <i class="fa fa-arrows mx-2 d-sm-block d-lg-inline"></i>
                                     Metrage
                                 </th>
                                 <th>
-                                    <i class="fa fa-money mx-2"></i>
+                                    <i class="fa fa-money mx-2 d-sm-block d-lg-inline"></i>
                                     Price
                                 </th>
                                 <th>
-                                    <i class="fa fa-check-square-o mx-2"></i>
+                                    <i class="fa fa-check-square-o mx-2 d-sm-block d-lg-inline"></i>
                                     Mangement
                                 </th>
                             </tr>
@@ -113,7 +117,10 @@
                             {
                                 <tr>
                                     <td>
-                                        <img src="/images/Estates/@item.Image" class="img-thumbnail my-1 zoom" width="128px" height="128px" />
+                                        <img src="/images/Thumb/@item.Image" class="img-thumbnail my-1 zoom"/>
+                                    </td>
+                                    <td>
+                                        @item.Category.Title
                                     </td>
                                     <td>
                                         @item.Address

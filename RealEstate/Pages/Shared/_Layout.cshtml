@@ -15,7 +15,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
-                <a class="navbar-brand">
+                <a class="navbar-brand" asp-page="/Index">
                     <img src="/images/icon/logo.svg" class="brand-animation position-relative ms-2"/>
                 </a>
                 <a class="navbar-brand fw-bold" asp-area="" asp-page="/Index">RealEstate</a>
@@ -44,7 +44,8 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; <span>@DateTime.Now.Year.ToString()</span> - RealEstate
+            &copy; <span>@DateTime.Now.Year.ToString()</span> -
+            <i class="fa fa-linkedin me-2"></i><a href="https://www.linkedin.com/in/ashkan-motahari/" class="fs-7 text-muted text-decoration-none">Ashkan Amjad</a>
         </div>
     </footer>
 

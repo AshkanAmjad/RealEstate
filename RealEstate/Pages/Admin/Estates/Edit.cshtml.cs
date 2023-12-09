@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using RealEstate.Data;
 using RealEstate.Models;
 using RealEstate.Models.ViewModels.EstatesViewModels;
+using RealEstate.Security;
 using RealEstate.Services.Interface;
 
 namespace RealEstate.Pages.Admin.Estates
@@ -74,7 +75,7 @@ namespace RealEstate.Pages.Admin.Estates
             #endregion
 
             #region Upload
-            if (ViewModel.ImgUp != null)
+            if (ViewModel.ImgUp != null && ViewModel.ImgUp.IsImage())
             {
 
                 if(ViewModel.Estate.Image != null)

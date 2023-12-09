@@ -1,0 +1,117 @@
+﻿@page
+@model RealEstate.Pages.Admin.Estates.DetailsModel
+@{
+}
+@{
+    ViewData["Title"] = "Details page";
+}
+<div class="row mt-5 mx-5">
+    <div class="col-xl-3 col-12">
+        <div class="list-group p-0 mb-5 ">
+            <a href="#" class="active list-group-item list-group-item-action bg-danger border border-danger">
+                <i class="fa fa-list mx-2"></i>
+                Details
+            </a>
+        </div>
+    </div>
+    <div class="col-xl-9 col-12 mb-5">
+        <div class="card shadow">
+            <div class="card-header d-flex">
+                <h4 class="mx-auto fw-bold">Estates Management</h4>
+            </div>
+            <div class=" card-body">
+                    <div class="row my-3">
+                        <div class="col-xl-6">
+                            <div class="row">
+                                <div class="col-6 col-sm-4">
+                                <i class="fa fa-check-circle-o fs-7"></i>
+                                    Title :
+                                </div>
+                                <div class="col-6 col-sm-8">
+                                    @Model.ViewModel.Title.ToString()
+                                </div>
+                            </div>
+                            <div class="row my-3">
+                                <div class="col-6 col-sm-4">
+                                <i class="fa fa-check-circle-o fs-7"></i>
+                                    Type :
+                                </div>
+                                <div class="col-6 col-sm-8">
+                                    @Model.ViewModel.Category.Title.ToString()
+                                </div>
+                            </div>
+                            <div class="row my-3">
+                                <div class="col-6 col-sm-4">
+                                <i class="fa fa-check-circle-o fs-7"></i>
+                                    Price :
+                            </div>
+                                <div class="col-6 col-sm-8">
+                                @Model.ViewModel.Price.ToString()
+                                <span class="fw-bold">$</span>
+                                </div>
+                            </div>
+                            <div class="row my-3">
+                                <div class="col-6 col-sm-4">
+                                <i class="fa fa-check-circle-o fs-7"></i>
+                                    Metrage :
+                                </div>
+                                <div class="col-6 col-sm-8">
+                                    @Model.ViewModel.Metrage.ToString()
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 ">
+                            <div class="row">
+                            <div class="col-6 col-sm-4 fs-7">
+                                    <i class="fa fa-check-circle-o"></i>
+                                    Address :
+                                </div>
+                                <div class="col-6 col-sm-8">
+                                    @Model.ViewModel.Address.ToString()
+                                </div>
+                            </div>
+                            <div class="row my-3">
+                                <div class="col-6 col-sm-4">
+                                    <i class="fa fa-check-circle-o fs-7"></i>
+                                    Description :
+                                </div>
+                                <div class="col-6 col-sm-8">
+                                @{
+                                    if (Model.ViewModel.Description != null)
+                                        Model.ViewModel.Description.ToString();
+                                    else
+                                    {
+                                        <span>none</span>
+                                    }
+                                }
+                                </div>
+                            </div>
+                            <div class="row my-3">
+                                <div class="col-6 col-sm-4">
+                                <i class="fa fa-check-circle-o fs-7"></i>
+                                    Images :
+                                </div>
+                                <div class="col-6 col-sm-8">
+                                <img src="/images/Thumb/@Model.ViewModel.Image" class="img-thumbnail my-1 zoom" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row col-12 m-0">
+                        <div class="col-6">
+                            <a class="btn btn-outline-primary w-100 mt-3" asp-page="Edit" asp-route-Id="@Model.ViewModel.Id" >
+                                <i class="fa fa-edit mx-2"></i>
+                                Edit
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a asp-page="Index" class="btn btn-outline-danger w-100 mt-3">
+                                <i class="fa fa-times mx-2"></i>
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
