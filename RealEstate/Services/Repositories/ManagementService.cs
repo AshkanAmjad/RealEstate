@@ -1,5 +1,6 @@
 ﻿using RealEstate.Convertors;
 using RealEstate.Data;
+using RealEstate.Models;
 using RealEstate.Models.ViewModels.EstatesViewModels;
 using RealEstate.Security;
 using RealEstate.Services.Interface;
@@ -26,7 +27,7 @@ namespace RealEstate.Services.Implementation
         {
             if(model.Estate.Image == null)
             {
-                model.Estate.Image = "defauilt-image.png";
+                model.Estate.Image = "default-image.png";
             }
             await _context.Estate.AddAsync(model.Estate);
             return true;
@@ -69,6 +70,20 @@ namespace RealEstate.Services.Implementation
             #endregion
         }
 
+        public void deleteImg(EstateModel model)
+        {
+            string saveDir = "wwwroot/images/Estates";
+            string saveDirThumb = "wwwroot/images/Thumb";
+            string deletePath = Path.Combine(Directory.GetCurrentDirectory(), saveDir, model.Image);
+            if (System.IO.File.Exists(deletePath))
+                System.IO.File.Delete(deletePath);
+            if (Directory.Exists(saveDirThumb))
+            {
+                string deletePathThumb = Path.Combine(Directory.GetCurrentDirectory(), saveDirThumb, model.Image);
+                if (System.IO.File.Exists(deletePathThumb))
+                    System.IO.File.Delete(deletePathThumb);
+            }
+        }
         public void deleteImg(EstateViewModel model)
         {
             string saveDir = "wwwroot/images/Estates";
@@ -82,6 +97,13 @@ namespace RealEstate.Services.Implementation
                 if (System.IO.File.Exists(deletePathThumb))
                     System.IO.File.Delete(deletePathThumb);
             }
+        }
+
+        public bool DeleteEstateAsync(EstateModel model)
+        {
+             _context.Remove(model);
+            return true;
+
         }
     }
 }

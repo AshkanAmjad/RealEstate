@@ -42,14 +42,38 @@
 }
 @if (ViewData["errorEdited"] is true)
 {
-    <div class="alert alert-danger p-1 text-center mx-auto mt-2" id="alerterrorEdited">
+    <div class="alert alert-danger p-1 text-center mx-auto mt-2" id="alertErrorEdited">
         <p class="help-block my-0">
-            <i class="fa fa-times-circle-o mx-2"></i>Erroe editing.
+            <i class="fa fa-times-circle-o mx-2"></i>Error editing.
         </p>
     </div>
     <script>
         var delay = 5000;
-        setTimeout(function () { document.getElementById("alertSuccessEdited").classList.add("hidden") }, delay);
+        setTimeout(function () { document.getElementById("alertErrorEdited").classList.add("hidden") }, delay);
+    </script>
+}
+@if (ViewData["successDeleted"] is true)
+{
+    <div class="alert alert-success p-1 text-center mx-auto mt-2" id="alertSuccessDeleted">
+        <p class="help-block my-0">
+            <i class="fa fa-check-circle-o mx-2"></i>Successfully deleted.
+        </p>
+    </div>
+    <script>
+        var delay = 5000;
+        setTimeout(function () { document.getElementById("alertSuccessDeleted").classList.add("hidden") }, delay);
+    </script>
+}
+@if (ViewData["errorDeleted"] is true)
+{
+    <div class="alert alert-danger p-1 text-center mx-auto mt-2" id="alertErrorDeleted">
+        <p class="help-block my-0">
+            <i class="fa fa-times-circle-o mx-2"></i>Error deleting.
+        </p>
+    </div>
+    <script>
+        var delay = 5000;
+        setTimeout(function () { document.getElementById("alertErrorDeleted").classList.add("hidden") }, delay);
     </script>
 }
 <div class="d-sm-none d-flex flex-column">
@@ -131,7 +155,7 @@
 
                                     <td>
                                         @item.Price
-                                        <span class="fw-bold">$</span>
+                                        <span class="fw-bold d-sm-block d-lg-inline">$</span>
                                     </td>
                                     <td>
                                         <div class="d-md-flex my-xl-4">

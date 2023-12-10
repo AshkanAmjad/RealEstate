@@ -1,16 +1,16 @@
 ﻿@page
-@model RealEstate.Pages.Admin.Estates.DetailsModel
+@model RealEstate.Pages.Admin.Estates.DeleteModel
 @{
 }
 @{
-    ViewData["Title"] = "Details page";
+    ViewData["Title"] = "Delete page";
 }
 <div class="row mt-5 mx-5">
     <div class="col-xl-3 col-12">
         <div class="list-group p-0 mb-5 ">
             <a href="#" class="active list-group-item list-group-item-action bg-danger border border-danger">
-                <i class="fa fa-list mx-2"></i>
-                Details
+                <i class="fa fa-trash mx-2"></i>
+                Delete
             </a>
         </div>
     </div>
@@ -20,54 +20,63 @@
                 <h4 class="mx-auto fw-bold">Estates Management</h4>
             </div>
             <div class=" card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="ViewModel.Id" class="d-none" />
+                    <input type="hidden" asp-for="ViewModel.Image" class="d-none" />
+
                     <div class="row my-3">
                         <div class="col-xl-6">
                             <div class="row">
                                 <div class="col-6 col-sm-4">
-                                <i class="fa fa-check-circle-o fs-7"></i>
+                                    <i class="fa fa-check-circle-o fs-7"></i>
                                     Title :
                                 </div>
                                 <div class="col-6 col-sm-8">
-                                    @Model.ViewModel.Title.ToString()
+                                    <input asp-for="ViewModel.Title" class="form-control" disabled />
                                 </div>
                             </div>
                             <div class="row my-3">
                                 <div class="col-6 col-sm-4">
-                                <i class="fa fa-check-circle-o fs-7"></i>
+                                    <i class="fa fa-check-circle-o fs-7"></i>
                                     Type :
                                 </div>
                                 <div class="col-6 col-sm-8">
-                                    @Model.ViewModel.Category.Title.ToString()
+                                    <input asp-for="ViewModel.Category.Title" class="form-control" disabled />
                                 </div>
                             </div>
                             <div class="row my-3">
                                 <div class="col-6 col-sm-4">
-                                <i class="fa fa-check-circle-o fs-7"></i>
+                                    <i class="fa fa-check-circle-o fs-7"></i>
                                     Price :
-                            </div>
+                                </div>
                                 <div class="col-6 col-sm-8">
-                                @Model.ViewModel.Price.ToString()
-                                <span class="fw-bold">$</span>
+                                    <div class="input-group">
+                                        <input asp-for="ViewModel.Price" class="form-control" disabled />
+                                        <span class="input-group-text">$</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row my-3">
                                 <div class="col-6 col-sm-4">
-                                <i class="fa fa-check-circle-o fs-7"></i>
+                                    <i class="fa fa-check-circle-o fs-7"></i>
                                     Metrage :
                                 </div>
                                 <div class="col-6 col-sm-8">
-                                    @Model.ViewModel.Metrage.ToString()
+                                    <div class="input-group">
+                                        <input asp-for="ViewModel.Metrage" class="form-control" disabled placeholder="Enter Metrage ..." />
+                                        <span class="input-group-text px-2">m<sup>2</sup></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-xl-6 ">
                             <div class="row">
-                            <div class="col-6 col-sm-4 fs-7">
+                                <div class="col-6 col-sm-4 fs-7">
                                     <i class="fa fa-check-circle-o"></i>
                                     Address :
                                 </div>
                                 <div class="col-6 col-sm-8">
-                                    @Model.ViewModel.Address.ToString()
+                                    <textarea asp-for="ViewModel.Address" class="form-control" disabled></textarea>
                                 </div>
                             </div>
                             <div class="row my-3">
@@ -76,35 +85,35 @@
                                     Description :
                                 </div>
                                 <div class="col-6 col-sm-8">
-                                @{
-                                    if (Model.ViewModel.Description != null)
-                                    {
-                                        @Model.ViewModel.Description.ToString();
+                                    @{
+                                        if (Model.ViewModel.Description != null)
+                                        {
+                                            <textarea asp-for="ViewModel.Description" class="form-control" disabled></textarea>
+                                        }
+                                        else
+                                        {
+                                            <span>none</span>
+                                        }
                                     }
-                                    else if (Model.ViewModel.Description == null)
-                                    {
-                                        <span>none</span>
-                                    }
-                                }
                                 </div>
                             </div>
                             <div class="row my-3">
                                 <div class="col-6 col-sm-4">
-                                <i class="fa fa-check-circle-o fs-7"></i>
+                                    <i class="fa fa-check-circle-o fs-7"></i>
                                     Images :
                                 </div>
                                 <div class="col-6 col-sm-8">
-                                <img src="/images/Thumb/@Model.ViewModel.Image" class="img-thumbnail my-1 zoom" />
+                                    <img src="/images/Thumb/@Model.ViewModel.Image" class="img-thumbnail my-1 zoom" />
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row col-12 m-0">
                         <div class="col-6">
-                            <a class="btn btn-outline-primary w-100 mt-3" asp-page="Edit" asp-route-Id="@Model.ViewModel.Id" >
-                                <i class="fa fa-edit mx-2"></i>
-                                Edit
-                            </a>
+                            <button class="btn btn-outline-success w-100 mt-3" type="submit">
+                                <i class="fa fa-save mx-2"></i>
+                                Save
+                            </button>
                         </div>
                         <div class="col-6">
                             <a asp-page="Index" class="btn btn-outline-danger w-100 mt-3">
@@ -113,6 +122,7 @@
                             </a>
                         </div>
                     </div>
+                </form>
             </div>
         </div>
     </div>

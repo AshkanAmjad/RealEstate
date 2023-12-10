@@ -52,7 +52,10 @@
                                     <label asp-for="ViewModel.Estate.Price" class="form-label">Price :</label>
                                 </div>
                                 <div class="col-7 col-sm-8">
-                                    <input asp-for="ViewModel.Estate.Price" class="form-control" placeholder="Enter Metrage ..." />
+                                    <div class="input-group">
+                                        <input asp-for="ViewModel.Estate.Price" class="form-control" placeholder="Enter Price ..." />
+                                        <span class="input-group-text px-3">$</span>
+                                    </div>
                                     <span class="valid-feedback text-danger" asp-validation-for="ViewModel.Estate.Price"></span>
                                 </div>
                             </div>
@@ -62,7 +65,10 @@
                                     <label asp-for="ViewModel.Estate.Metrage" class="form-label">Metrage :</label>
                                 </div>
                                 <div class="col-7 col-sm-8">
-                                    <input asp-for="ViewModel.Estate.Metrage" class="form-control" placeholder="Enter Metrage ..." />
+                                    <div class="input-group">
+                                        <input asp-for="ViewModel.Estate.Metrage" class="form-control" placeholder="Enter Metrage ..." />
+                                        <span class="input-group-text px-2">m<sup>2</sup></span>
+                                    </div>
                                     <span class="valid-feedback text-danger" asp-validation-for="ViewModel.Estate.Metrage"></span>
                                 </div>
                             </div>
@@ -96,13 +102,13 @@
                                     <input asp-for="ViewModel.ImgUp" id="ImgUp" type="file" accept="image" class="form-control" />
                                     <img src="/images/icon/default-image.png" id="imgPreview" class="border my-2 mx-auto rounded" width="128px" height="128px" />
                                 </div>
-                            </div>   
+                            </div>
 
                         </div>
                     </div>
                     <div class="row col-12 m-0">
                         <div class="col-6">
-                            <button class="btn btn-outline-success w-100 mt-3" type="submit"  >
+                            <button class="btn btn-outline-success w-100 mt-3" type="submit">
                                 <i class="fa fa-save mx-2"></i>
                                 Save
                             </button>
@@ -123,9 +129,9 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-        <script>
+    <script>
         $('#ImgUp').change(function () {
             readURL(this);
         });</script>
-        
+
 }

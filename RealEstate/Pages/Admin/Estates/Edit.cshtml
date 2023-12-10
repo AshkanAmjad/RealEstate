@@ -53,7 +53,10 @@
                                     <label asp-for="ViewModel.Estate.Price" class="form-label  fs-7">Price :</label>
                                 </div>
                                 <div class="col-7 col-sm-8">
-                                    <input asp-for="ViewModel.Estate.Price" class="form-control" placeholder="Enter Metrage ..." />
+                                    <div class="input-group">
+                                        <input asp-for="ViewModel.Estate.Price" class="form-control" placeholder="Enter Metrage ..." />
+                                        <span class="input-group-text">$</span>
+                                    </div>
                                     <span class="valid-feedback text-danger" asp-validation-for="ViewModel.Estate.Price"></span>
                                 </div>
                             </div>
@@ -63,7 +66,10 @@
                                     <label asp-for="ViewModel.Estate.Metrage" class="form-label  fs-7">Metrage :</label>
                                 </div>
                                 <div class="col-7 col-sm-8">
-                                    <input asp-for="ViewModel.Estate.Metrage" class="form-control" placeholder="Enter Metrage ..." />
+                                    <div class="input-group">
+                                        <input asp-for="ViewModel.Estate.Metrage" class="form-control" placeholder="Enter Metrage ..." />
+                                        <span class="input-group-text px-2">m<sup>2</sup></span>
+                                    </div>
                                     <span class="valid-feedback text-danger" asp-validation-for="ViewModel.Estate.Metrage"></span>
                                 </div>
                             </div>

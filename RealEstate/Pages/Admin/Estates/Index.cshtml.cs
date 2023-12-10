@@ -26,13 +26,15 @@ namespace RealEstate.Pages.Admin.Estates
 
         #region OnGet
         public async Task<IActionResult> OnGetAsync(bool successCreated = false,bool errorCreated=false
-            ,bool successEdited=false,bool errorEdited=false)
+            ,bool successEdited=false,bool errorEdited=false
+            ,bool successDeleted=false,bool errorDeleted=false)
         {
             ViewData["successCreated"] = successCreated;
             ViewData["errorCreated"] = errorCreated;
             ViewData["successEdited"] = successEdited;
             ViewData["errorEdited"] = errorEdited;
-
+            ViewData["successDeleted"] = successDeleted;
+            ViewData["errorDeleted"] = errorDeleted;
             if (_context.Estate != null)
             {
                 IndexDto = await _context.Estate.Include(c=>c.Category).ToListAsync();
