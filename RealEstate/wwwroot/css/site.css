@@ -22,17 +22,9 @@ body {
 }
 
 .brand-animation {
-    animation: brand-animation 5s 1;
-}
-
-@keyframes brand-animation {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+    display: inline-block;
+    animation: fadeIn;
+    animation-duration:3s;
 }
 
 .zoom {

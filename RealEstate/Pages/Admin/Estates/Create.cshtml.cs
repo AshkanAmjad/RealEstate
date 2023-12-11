@@ -83,11 +83,11 @@ namespace RealEstate.Pages.Admin.Estates
 
             if (addResult ==true && saveChangesResult == true)
             {
-                return RedirectToPage("Index", new { successCreated = true });
+                return RedirectToPage("Index", new { successfuly = true });
             }
             else if (addResult != true || saveChangesResult != true)
             {
-                return RedirectToPage("Index", new { errorCreated = true });
+                return RedirectToPage("Index", new { error = true });
             }
             return Page();
         }

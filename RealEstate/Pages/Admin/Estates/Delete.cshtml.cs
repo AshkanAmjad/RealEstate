@@ -51,11 +51,11 @@ namespace RealEstate.Pages.Admin.Estates
             var saveChangesResult = await _managementService.SaveChangesAsync();
             if (deleteResult == true && saveChangesResult == true )
             {
-                return RedirectToPage("Index", new { successDeleted = true });
+                return RedirectToPage("Index", new { successfuly = true });
             }
             else if (deleteResult != true || saveChangesResult != true )
             {
-                return RedirectToPage("Index", new { errorDeleted = true });
+                return RedirectToPage("Index", new { error = true });
             }
             return Page();
         }

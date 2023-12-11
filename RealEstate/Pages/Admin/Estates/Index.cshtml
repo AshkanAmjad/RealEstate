@@ -4,78 +4,7 @@
 @{
     ViewData["Title"] = "Admin page";
 }
-@if (ViewData["successCreated"] is true)
-{
-    <div class="alert alert-success w-25 text-center mx-auto mt-2" id="alertSuccessCreated">
-        <p class="help-block my-0">
-            <i class="fa fa-check-circle-o mx-2"></i>Successfully created.
-        </p>
-    </div>
-    <script>
-        var delay = 5000;
-        setTimeout(function () { document.getElementById("alertSuccessCreated").classList.add("hidden") }, delay);
-    </script>
-}
-@if (ViewData["errorCreated"] is true)
-{
-    <div class="alert alert-danger w-25 text-center mx-auto mt-2" id="alertErrorCreated">
-        <p class="help-block my-0">
-            <i class="fa fa-times-circle-o mx-2"></i>Error creating
-        </p>
-    </div>
-    <script>
-        var delay = 5000;
-        setTimeout(function () { document.getElementById("alertErrorCreated").classList.add("hidden") }, delay);
-    </script>
-}
-@if (ViewData["successEdited"] is true)
-{
-    <div class="alert alert-success p-1 text-center mx-auto mt-2" id="alertSuccessEdited">
-        <p class="help-block my-0">
-            <i class="fa fa-check-circle-o mx-2"></i>Successfully edited.
-        </p>
-    </div>
-    <script>
-        var delay = 5000;
-        setTimeout(function () { document.getElementById("alertSuccessEdited").classList.add("hidden") }, delay);
-    </script>
-}
-@if (ViewData["errorEdited"] is true)
-{
-    <div class="alert alert-danger p-1 text-center mx-auto mt-2" id="alertErrorEdited">
-        <p class="help-block my-0">
-            <i class="fa fa-times-circle-o mx-2"></i>Error editing.
-        </p>
-    </div>
-    <script>
-        var delay = 5000;
-        setTimeout(function () { document.getElementById("alertErrorEdited").classList.add("hidden") }, delay);
-    </script>
-}
-@if (ViewData["successDeleted"] is true)
-{
-    <div class="alert alert-success p-1 text-center mx-auto mt-2" id="alertSuccessDeleted">
-        <p class="help-block my-0">
-            <i class="fa fa-check-circle-o mx-2"></i>Successfully deleted.
-        </p>
-    </div>
-    <script>
-        var delay = 5000;
-        setTimeout(function () { document.getElementById("alertSuccessDeleted").classList.add("hidden") }, delay);
-    </script>
-}
-@if (ViewData["errorDeleted"] is true)
-{
-    <div class="alert alert-danger p-1 text-center mx-auto mt-2" id="alertErrorDeleted">
-        <p class="help-block my-0">
-            <i class="fa fa-times-circle-o mx-2"></i>Error deleting.
-        </p>
-    </div>
-    <script>
-        var delay = 5000;
-        setTimeout(function () { document.getElementById("alertErrorDeleted").classList.add("hidden") }, delay);
-    </script>
-}
+
 <div class="d-sm-none d-flex flex-column">
     <div class="alert alert-warning  shadow d-flex">
         <i class="fa fa-warning mx-3 my-1 "></i>
@@ -86,23 +15,16 @@
     <img src="/images/icon/rotating-warning.png" class="mx-auto my-4" />
 </div>
 <div class="row my-5 mx-5 d-none d-sm-flex">
-    <div class="col-xl-3 col-12">
-        <div class="list-group p-0 mb-5 ">
-            <a href="#" class="active list-group-item list-group-item-action bg-danger border border-danger">
-                <i class="fa fa-home me-2"></i>
-                Estates Management
-            </a>
-        </div>
-    </div>
-
+    <partial name="_PanelPartial" />
     <div class="col-xl-9 col-12">
         <div class="card shadow">
-            <div class="card-header d-flex">
+            <div class="card-header d-flex justify-content-center align-items-center">
                 <a asp-page="Create" class="btn btn-outline-primary">
                     <i class="fa fa-plus"></i>
                     Add
                 </a>
-                <h4 class="mx-auto fw-bold">Estates Management</h4>
+
+                <h4 class="mx-auto fw-bold mb-0">Estates Management</h4>
             </div>
             <div class="card-body">
                 @if (Model.IndexDto.Any())

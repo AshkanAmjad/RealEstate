@@ -60,13 +60,17 @@ namespace RealEstate.Services.Implementation
 
             model.Estate.Image = Guid.NewGuid().ToString() + Path.GetExtension(model.ImgUp.FileName);
             string savePath = Path.Combine(Directory.GetCurrentDirectory(), saveDir, model.Estate.Image);
-            using (var filestream =new FileStream(savePath, FileMode.Create))
+            using (var filestream =new FileStream(savePath, FileMode.Create)) 
                 model.ImgUp.CopyTo(filestream);
+            
 
             #region ThumbImg
-            ImageConvertor imgResizer = new ImageConvertor();
-            string thumbPath = Path.Combine(Directory.GetCurrentDirectory(), saveDirThumb, model.Estate.Image);
-            imgResizer.ResizeImage(savePath, thumbPath, 100,100);
+            if (model.Estate.Image != "default-image.png")
+            {
+                ImageConvertor imgResizer = new ImageConvertor();
+                string thumbPath = Path.Combine(Directory.GetCurrentDirectory(), saveDirThumb, model.Estate.Image);
+                imgResizer.ResizeImage(savePath, thumbPath, 100, 100);
+            }
             #endregion
         }
 
@@ -80,8 +84,10 @@ namespace RealEstate.Services.Implementation
             if (Directory.Exists(saveDirThumb))
             {
                 string deletePathThumb = Path.Combine(Directory.GetCurrentDirectory(), saveDirThumb, model.Image);
-                if (System.IO.File.Exists(deletePathThumb))
-                    System.IO.File.Delete(deletePathThumb);
+                if (System.IO.File.Exists(deletePathThumb)) { 
+                    if (model.Image != "default-image.png")
+                        System.IO.File.Delete(deletePathThumb);
+                }
             }
         }
         public void deleteImg(EstateViewModel model)
@@ -95,7 +101,10 @@ namespace RealEstate.Services.Implementation
             {
                 string deletePathThumb = Path.Combine(Directory.GetCurrentDirectory(), saveDirThumb, model.Estate.Image);
                 if (System.IO.File.Exists(deletePathThumb))
-                    System.IO.File.Delete(deletePathThumb);
+                {
+                    if (model.Estate.Image != "default-image.png")
+                        System.IO.File.Delete(deletePathThumb);
+                }
             }
         }
 

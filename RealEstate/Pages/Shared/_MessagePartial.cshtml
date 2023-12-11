@@ -1,0 +1,40 @@
+﻿@if(TempData["MessageType"]!=null){
+    string errorType = (string)TempData["MessageType"];
+    if(errorType == "error")
+    {
+        <script>
+            swal.fire({
+                title:'Error',
+                icon:'error',
+                showConfirmButton: false,
+                timer: 4000,
+                position:'top-end',
+                showClass:{
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutDown'
+
+                }
+
+            })
+        </script>
+    }else if(errorType == "success")
+    {
+        <script>
+            swal.fire({
+                title: 'Successfuly operation.',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 4000,
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutDown'
+
+                }
+            })
+        </script>
+    }
+}

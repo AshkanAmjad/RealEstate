@@ -6,19 +6,12 @@
     ViewData["Title"] = "Create page";
 }
 <div class="row mt-5 mx-5">
-    <div class="col-xl-3 col-12">
-        <div class="list-group p-0 mb-5 ">
-            <a href="#" class="active list-group-item list-group-item-action bg-danger border border-danger">
-                <i class="fa fa-plus mx-2"></i>
-                Add
-            </a>
-        </div>
-    </div>
-
+    <partial name="_PanelPartial"/>
     <div class="col-xl-9 col-12 mb-5">
         <div class="card shadow">
-            <div class="card-header d-flex">
-                <h4 class="mx-auto fw-bold">Estates Management</h4>
+            <div class="card-header d-flex justify-content-center align-items-center">
+                <i class="fa fa-plus fa-lg mx-2"></i>
+                <h4 class="fw-bold mb-0">Add</h4>
             </div>
             <div class=" card-body">
                 <form method="post" enctype="multipart/form-data">

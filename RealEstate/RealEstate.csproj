@@ -25,4 +25,8 @@
     <PackageReference Include="SkiaSharp" Version="2.88.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\Estates\" />
+  </ItemGroup>
+
 </Project>

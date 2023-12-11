@@ -6,24 +6,18 @@
     ViewData["Title"] = "Edit page";
 }
 <div class="row mt-5 mx-5">
-    <div class="col-xl-3 col-12">
-        <div class="list-group p-0 mb-5 ">
-            <a href="#" class="active list-group-item list-group-item-action bg-danger border border-danger">
-                <i class="fa fa-edit mx-2"></i>
-                Edit
-            </a>
-        </div>
-    </div>
-
+    <partial name="_PanelPartial" />
     <div class="col-xl-9 col-12 mb-5">
         <div class="card shadow">
-            <div class="card-header d-flex">
-                <h4 class="mx-auto fw-bold">Estates Management</h4>
+            <div class="card-header d-flex justify-content-center align-items-center">
+                <i class="fa fa-edit fa-lg mx-2"></i>
+                <h4 class="fw-boldmb-0">Edit</h4>
             </div>
             <div class=" card-body">
                 <form method="post" enctype="multipart/form-data">
                     <input type="hidden" asp-for="ViewModel.Estate.Id" />
                     <input type="hidden" asp-for="ViewModel.Estate.Image" />
+                    <select asp-for="ViewModel.SelectedCategory" asp-items="Model.ViewModel.CategoryOptions" class="form-control d-none"></select>
                     <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                     <div class="row my-3">
                         <div class="col-xl-6">
@@ -35,16 +29,6 @@
                                 <div class="col-7 col-sm-8 ">
                                     <input asp-for="ViewModel.Estate.Title" class="form-control" placeholder="Enter Title ..." />
                                     <span class="valid-feedback text-danger" asp-validation-for="ViewModel.Estate.Title"></span>
-                                </div>
-                            </div>
-                            <div class="row my-3">
-                                <div class="col-5 col-sm-4">
-                                    <i class="fa fa-check-circle-o"></i>
-                                    <label asp-for="ViewModel.SelectedCategory" class="form-label fs-7">Type :</label>
-                                </div>
-                                <div class="col-7 col-sm-8">
-                                    <select asp-for="ViewModel.SelectedCategory" asp-items="Model.ViewModel.CategoryOptions" class="form-control">
-                                    </select>
                                 </div>
                             </div>
                             <div class="row my-3">
@@ -81,17 +65,17 @@
                                     <label asp-for="ViewModel.Estate.Address" class="form-label fs-7">Address :</label>
                                 </div>
                                 <div class="col-7 col-sm-8">
-                                    <textarea asp-for="ViewModel.Estate.Address" class="form-control" placeholder="Enter Address ..."></textarea>
+                                    <textarea asp-for="ViewModel.Estate.Address" rows="1" class="form-control" placeholder="Enter Address ..."></textarea>
                                     <span class="valid-feedback text-danger" asp-validation-for="ViewModel.Estate.Address"></span>
                                 </div>
                             </div>
                             <div class="row my-3">
                                 <div class="col-5 col-sm-4">
                                     <i class="fa fa-check-circle-o"></i>
-                                    <label asp-for="ViewModel.Estate.Description" class="form-label fs-7">Description :</label>
+                                    <label asp-for="ViewModel.Estate.Description"  class="form-label fs-7">Description :</label>
                                 </div>
                                 <div class="col-7 col-sm-8">
-                                    <textarea asp-for="ViewModel.Estate.Description" class="form-control" placeholder="Enter Description ..."></textarea>
+                                    <textarea asp-for="ViewModel.Estate.Description" rows="1" class="form-control" placeholder="Enter Description ..."></textarea>
                                 </div>
                             </div>
                             <div class="row my-3">

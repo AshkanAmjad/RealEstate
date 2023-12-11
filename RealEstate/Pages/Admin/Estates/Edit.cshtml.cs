@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using RealEstate.Data;
 using RealEstate.Models;
 using RealEstate.Models.ViewModels.EstatesViewModels;
@@ -91,11 +92,11 @@ namespace RealEstate.Pages.Admin.Estates
             var saveChangesResult = await _managementService.SaveChangesAsync();
             if (saveChangesResult == true && editResult == true)
             {
-                return RedirectToPage("Index", new { successEdited = true });
+                return RedirectToPage("Index", new { successfuly = true });
             }
             else if(saveChangesResult != true || editResult != true)
             {
-                return RedirectToPage("Index", new { errorEdited = true });
+                return RedirectToPage("Index", new { error = true });
             }
             return Page();
         }
