@@ -88,7 +88,7 @@ namespace RealEstate.Pages.Admin.Estates
             #endregion
 
             ViewModel.Estate.CategoryId = categoryId;
-            bool editResult=_managementService.UpdateChangesAsync(ViewModel);
+            bool editResult=_managementService.UpdateChanges(ViewModel);
             var saveChangesResult = await _managementService.SaveChangesAsync();
             if (saveChangesResult == true && editResult == true)
             {

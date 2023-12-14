@@ -23,6 +23,13 @@ namespace RealEstate.Services.Implementation
             return true;
         }
 
+        public async Task<bool> AddCategoriesToDBAsync(CategoryModel? model)
+        {
+            await _context.AddAsync(model);
+            return true;
+        }
+
+
         public async Task<bool> CreateEstatesAsync(EstateViewModel model)
         {
             if(model.Estate.Image == null)
@@ -39,7 +46,7 @@ namespace RealEstate.Services.Implementation
             return true;
         }
 
-        public bool UpdateChangesAsync(EstateViewModel model)
+        public bool UpdateChanges(EstateViewModel model)
         {
             _context.Update(model.Estate);
             return true;
@@ -108,11 +115,22 @@ namespace RealEstate.Services.Implementation
             }
         }
 
-        public bool DeleteEstateAsync(EstateModel model)
+        public bool DeleteEstate(EstateModel model)
         {
              _context.Remove(model);
             return true;
+        }
 
+        public bool DeleteCategory(CategoryModel model)
+        {
+            _context.Remove(model);
+            return true;
+        }
+
+        public bool UpdateChanges(CategoryModel model)
+        {
+            _context.Update(model);
+            return true;
         }
     }
 }

@@ -18,9 +18,18 @@ namespace RealEstate.Services.Interface
 
         #region DB
         Task<bool> SaveChangesAsync();
+
+        #region Estates
         Task<bool> AddEstatesToDBAsync(EstateViewModel model);
-        bool UpdateChangesAsync(EstateViewModel model);
-        bool DeleteEstateAsync(EstateModel model);
+        bool UpdateChanges(EstateViewModel model);
+        bool DeleteEstate(EstateModel model);
+        #endregion
+
+        #region Categories
+        Task<bool> AddCategoriesToDBAsync(CategoryModel model);
+        bool UpdateChanges(CategoryModel model);
+        bool DeleteCategory(CategoryModel model);
+        #endregion
 
         #endregion
     }

@@ -1,8 +1,8 @@
 ﻿@page
-@model RealEstate.Pages.Admin.Estates.IndexModel
+@model RealEstate.Pages.Admin.Categories.IndexModel
 
 @{
-    ViewData["Title"] = "Admin";
+    ViewData["Title"] = "Categories";
 }
 
 <div class="d-sm-none d-flex flex-column">
@@ -24,63 +24,45 @@
                     Add
                 </a>
 
-                <h4 class="mx-auto fw-bold mb-0">Estates Management</h4>
+                <h4 class="mx-auto fw-bold mb-0">Categories Management</h4>
             </div>
             <div class="card-body">
-                @if (Model.IndexDto.Any())
+                @if (Model.CategoryModel.Any())
                 {
                     <table class="table table-bordered table-striped table-hover mx-auto  text-center">
                         <thead>
                             <tr>
                                 <th>
-                                    <i class="fa fa-image mx-2 d-sm-block d-lg-inline "></i>
-                                    Image
+                                    <i class="fa fa-list mx-2 d-sm-block d-lg-inline "></i>
+                                    Title
                                 </th>
                                 <th>
-                                    <i class="fa fa-home mx-2 d-sm-block d-lg-inline"></i>
-                                    Type
+                                    <i class="fa fa-reorder mx-2 d-sm-block d-lg-inline"></i>
+                                    Description
                                 </th>
-                                <th>
-                                    <i class="fa fa-map-marker mx-2 d-sm-block d-lg-inline"></i>
-                                    Address
-                                </th>
-                                <th>
-                                    <i class="fa fa-arrows mx-2 d-sm-block d-lg-inline"></i>
-                                    Metrage
-                                </th>
-                                <th>
-                                    <i class="fa fa-money mx-2 d-sm-block d-lg-inline"></i>
-                                    Price
-                                </th>
-                                <th>
+                                <th class="w-25">
                                     <i class="fa fa-check-square-o mx-2 d-sm-block d-lg-inline"></i>
                                     Mangement
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.IndexDto)
+                            @foreach (var item in Model.CategoryModel)
                             {
                                 <tr>
+                                    <td>@item.Title</td>
                                     <td>
-                                        <img src="/images/Thumb/@item.Image" class="img-thumbnail my-1 zoom"/>
+                                        @if (item.Description != null)
+                                        {
+                                            @item.Description
+                                        }
+                                        else if (item.Description == null)
+                                        {
+                                            <span>none</span>
+                                        }
                                     </td>
                                     <td>
-                                        @item.Category.Title
-                                    </td>
-                                    <td>
-                                        @item.Address
-                                    </td>
-                                    <td>
-                                        @item.Metrage
-                                    </td>
-
-                                    <td>
-                                        @item.Price
-                                        <span class="fw-bold d-sm-block d-lg-inline">$</span>
-                                    </td>
-                                    <td>
-                                        <div class="d-md-flex my-xl-4">
+                                        <div class="d-md-flex mx-auto">
                                             <a asp-page="Details" asp-route-Id="@item.Id" class="btn btn-outline-primary col-md-4 col-12 rounded-0">
                                                 <i class="fa fa-list fa-lg"></i>
                                             </a>
@@ -108,4 +90,3 @@
         </div>
     </div>
 </div>
-

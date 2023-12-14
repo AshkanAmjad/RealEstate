@@ -47,7 +47,7 @@ namespace RealEstate.Pages.Admin.Estates
             {
                 _managementService.deleteImg(ViewModel);
             };
-            bool deleteResult= _managementService.DeleteEstateAsync(ViewModel);
+            bool deleteResult= _managementService.DeleteEstate(ViewModel);
             var saveChangesResult = await _managementService.SaveChangesAsync();
             if (deleteResult == true && saveChangesResult == true )
             {

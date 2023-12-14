@@ -1,9 +1,7 @@
 ﻿@page
 @model RealEstate.Pages.Admin.Estates.CreateModel
 @{
-}
-@{
-    ViewData["Title"] = "Create page";
+    ViewData["Title"] = "Create";
 }
 <div class="row mt-5 mx-5">
     <partial name="_PanelPartial"/>
@@ -15,7 +13,7 @@
             </div>
             <div class=" card-body">
                 <form method="post" enctype="multipart/form-data">
-                    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+                    <div asp-validation-summary="ModelOnly" role="alert"></div>
                     <div class="row my-3">
                         <div class="col-xl-6">
                             <div class="row">
@@ -107,7 +105,7 @@
                             </button>
                         </div>
                         <div class="col-6">
-                            <a asp-page="Index" class="btn btn-outline-danger w-100 mt-3">
+                            <a asp-page="Index" class="btn btn-outline-secondary w-100 mt-3">
                                 <i class="fa fa-times mx-2"></i>
                                 Cancel
                             </a>
@@ -120,7 +118,9 @@
 </div>
 @section Scripts {
     @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        // await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    <partial name="_ValidationScriptsPartial" />
+
     }
     <script>
         $('#ImgUp').change(function () {

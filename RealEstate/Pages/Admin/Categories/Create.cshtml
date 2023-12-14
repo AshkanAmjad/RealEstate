@@ -1,0 +1,100 @@
+﻿@page
+@model RealEstate.Pages.Admin.Categories.CreateModel
+
+@{
+    ViewData["Title"] = "Create Categories";
+}
+<div class="row mt-5 mx-5">
+    <partial name="_PanelPartial" />
+    <div class="col-xl-9 col-12 mb-5">
+        <div class="card shadow">
+            <div class="card-header d-flex justify-content-center align-items-center">
+                <i class="fa fa-plus fa-lg mx-2"></i>
+                <h4 class="fw-boldmb-0">Add Category</h4>
+            </div>
+            <div class=" card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" role="alert"></div>
+                    <div class="row my-3">
+                        <div class="col-xl-6 ">
+                            <div class="row">
+                                <div class="col-lg-3 col-5">
+                                    <i class="fa fa-check-circle-o"></i>
+                                    <label asp-for="CategoryModel.Title" class="form-label fs-7">Title :</label>
+                                </div>
+                                <div class="col-lg-9 col-7">
+                                    <input asp-for="CategoryModel.Title" class="form-control" placeholder="Enter Title ..." />
+                                    <span class="valid-feedback text-danger" asp-validation-for="CategoryModel.Title"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="row my-3 my-xl-0">
+                                <div class="col-lg-3 col-5">
+                                    <i class="fa fa-check-circle-o"></i>
+                                    <label asp-for="CategoryModel.Description" id="discription" class="form-label  fs-7">Description :</label>
+                                </div>
+                                <div class="col-7 col-lg-9">
+                                        <textarea asp-for="CategoryModel.Description" rows="1" class="form-control" placeholder="Enter Description ..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row col-12 m-0">
+                        <div class="col-6 pe-0">
+                            <button class="btn btn-outline-success w-100 mt-3" type="submit">
+                                <i class="fa fa-save mx-2"></i>
+                                Save
+                            </button>
+                        </div>
+                        <div class="col-6 pe-0">
+                            <a asp-page="Index" class="btn btn-outline-secondary w-100 mt-3">
+                                <i class="fa fa-times mx-2"></i>
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+@* <h1>Create</h1>
+
+<h4>CategoryModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CategoryModel.Title" class="control-label"></label>
+                <input asp-for="CategoryModel.Title" class="form-control" />
+                <span asp-validation-for="CategoryModel.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryModel.Description" class="control-label"></label>
+                <input asp-for="CategoryModel.Description" class="form-control" />
+                <span asp-validation-for="CategoryModel.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+ *@

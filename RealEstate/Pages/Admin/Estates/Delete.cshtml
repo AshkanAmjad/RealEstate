@@ -3,7 +3,7 @@
 @{
 }
 @{
-    ViewData["Title"] = "Delete page";
+    ViewData["Title"] = "Delete";
 }
 <div class="row mt-5 mx-5">
     <partial name="_PanelPartial" />
@@ -15,8 +15,8 @@
             </div>
             <div class=" card-body">
                 <form method="post" enctype="multipart/form-data">
-                    <input type="hidden" asp-for="ViewModel.Id" class="d-none" />
-                    <input type="hidden" asp-for="ViewModel.Image" class="d-none" />
+                    <input type="hidden" asp-for="ViewModel.Id" />
+                    <input type="hidden" asp-for="ViewModel.Image" />
 
                     <div class="row my-3">
                         <div class="col-xl-6">
@@ -104,13 +104,13 @@
                     </div>
                     <div class="row col-12 m-0">
                         <div class="col-6">
-                            <button class="btn btn-outline-success w-100 mt-3" type="submit">
-                                <i class="fa fa-save mx-2"></i>
-                                Save
+                            <button class="btn btn-outline-danger w-100 mt-3" type="submit">
+                                <i class="fa fa-trash mx-2"></i>
+                                Delete
                             </button>
                         </div>
                         <div class="col-6">
-                            <a asp-page="Index" class="btn btn-outline-danger w-100 mt-3">
+                            <a asp-page="Index" class="btn btn-outline-secondary w-100 mt-3">
                                 <i class="fa fa-times mx-2"></i>
                                 Cancel
                             </a>

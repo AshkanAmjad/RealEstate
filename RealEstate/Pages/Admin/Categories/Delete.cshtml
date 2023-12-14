@@ -1,0 +1,67 @@
+﻿@page
+@model RealEstate.Pages.Admin.Categories.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete Categories";
+}
+<div class="row mt-5 mx-5">
+    <partial name="_PanelPartial" />
+    <div class="col-xl-9 col-12 mb-5">
+        <div class="card shadow">
+            <div class="card-header d-flex justify-content-center align-items-center">
+                <i class="fa fa-trash fa-lg mx-2"></i>
+                <h4 class="fw-bold mb-0">Delete</h4>
+            </div>
+            <div class=" card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="CategoryModel.Id" />
+                    <div class="row my-3">
+                        <div class="col-xl-6">
+                            <div class="row">
+                                <div class="col-5 col-lg-3 fs-7">
+                                    <i class="fa fa-check-circle-o fs-7"></i>
+                                    Title :
+                                </div>
+                                <div class="col-7 col-lg-9">
+                                    <input asp-for="CategoryModel.Title" class="form-control" disabled />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="row my-3 my-xl-0">
+                                <div class="col-5 col-lg-3 fs-7">
+                                    <i class="fa fa-check-circle-o fs-7"></i>
+                                    Description :
+                                </div>
+                                <div class="col-7 col-lg-9">
+                                    @if(Model.CategoryModel.Description != null)
+                                    {
+                                        <textarea asp-for="CategoryModel.Title" class="form-control" disabled></textarea>
+                                    }
+                                    else if(Model.CategoryModel.Description == null)
+                                    {
+                                        <span>none</span>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row col-12 m-0">
+                        <div class="col-6">
+                            <button class="btn btn-outline-danger w-100 mt-3" type="submit">
+                                <i class="fa fa-trash mx-2"></i>
+                                Delete
+                            </button>
+                        </div>
+                        <div class="col-6">
+                            <a asp-page="Index" class="btn btn-outline-secondary w-100 mt-3">
+                                <i class="fa fa-times mx-2"></i>
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
