@@ -48,15 +48,13 @@ namespace RealEstate.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
-
             if (ModelState.IsValid)
             {
 
                 var result = await _signInManager.PasswordSignInAsync(Input.phoneNumber, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    return LocalRedirect(returnUrl);
+                return RedirectToPage("/Index", new { successfuly = true });
                 }
                 else
                 {

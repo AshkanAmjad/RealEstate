@@ -12,9 +12,17 @@ namespace RealEstate.Pages
         #endregion
 
         #region OnGet
-        public void OnGet()
+        public void OnGet(bool successfuly = false, bool error = false)
         {
+            if (successfuly == true)
+            {
+                TempData["MessageType"] = "success";
+            }
+            else if (error == true)
+            {
+                TempData["MessageType"] = "error";
 
+            }
         }
         #endregion
     }

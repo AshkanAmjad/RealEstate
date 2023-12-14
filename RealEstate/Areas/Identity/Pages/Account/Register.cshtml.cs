@@ -50,7 +50,7 @@ namespace RealEstate.Areas.Identity.Pages.Account
     
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl ??= Url.Content("~/");
+            returnUrl ??= Url.Content("/index");
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
@@ -73,7 +73,7 @@ namespace RealEstate.Areas.Identity.Pages.Account
                     #endregion
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
+                    return RedirectToPage(returnUrl, new { successfuly = true });
                 }
                 foreach (var error in result.Errors)
                 {
