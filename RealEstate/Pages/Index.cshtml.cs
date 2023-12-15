@@ -1,18 +1,24 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using RealEstate.Data;
+using RealEstate.Models;
 
 namespace RealEstate.Pages
 {
     public class IndexModel : PageModel
     {
         #region Constructor
-        public IndexModel()
+        private readonly ApplicationDbContext _context;
+        public IndexModel(ApplicationDbContext context)
         {
+            _context = context;
         }
+        public List<EstateModel>? viewmodel { get; set; }
         #endregion
 
         #region OnGet
-        public void OnGet(bool successfuly = false, bool error = false)
+        public async Task<IActionResult> OnGet(bool successfuly = false, bool error = false)
         {
             if (successfuly == true)
             {
@@ -23,6 +29,8 @@ namespace RealEstate.Pages
                 TempData["MessageType"] = "error";
 
             }
+            viewmodel = await _context.Estate.ToListAsync();
+            return Page();
         }
         #endregion
     }

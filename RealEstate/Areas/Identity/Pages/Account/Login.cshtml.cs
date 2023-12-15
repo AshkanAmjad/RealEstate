@@ -50,11 +50,11 @@ namespace RealEstate.Areas.Identity.Pages.Account
         {
             if (ModelState.IsValid)
             {
-
+                returnUrl ??= Url.Content("/index");
                 var result = await _signInManager.PasswordSignInAsync(Input.phoneNumber, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                return RedirectToPage("/Index", new { successfuly = true });
+                return RedirectToPage(returnUrl, new { successfuly = true });
                 }
                 else
                 {
