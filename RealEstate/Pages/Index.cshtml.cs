@@ -29,7 +29,7 @@ namespace RealEstate.Pages
                 TempData["MessageType"] = "error";
 
             }
-            viewmodel = await _context.Estate.ToListAsync();
+            viewmodel = await _context.Estate.Include(c=>c.Category).ToListAsync();
             if(viewmodel.Count == 0)
             {
                 TempData["MessageType"] = "availableError";
