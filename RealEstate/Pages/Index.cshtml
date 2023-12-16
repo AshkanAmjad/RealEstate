@@ -71,7 +71,10 @@
                         <hr />
                         <div>
                             <i class="fa fa-money fa-lg text-danger mx-1 mb-2"></i>
-                            <span class="fw-bolder fs-6"><u>@item.Price</u></span>
+                            <span class="fw-bolder fs-6">
+                                <u>@item.Price</u>
+                                <span class="fw-bold">$</span>
+                            </span>
 
                         </div>
                     </div>
@@ -79,12 +82,5 @@
             </div>
         }
 
-    }
-    else
-    {
-        <h6 class="text-center w-75 alert mx-auto alert-danger shadow">
-            <i class="fa fa-exclamation-triangle"></i>
-            There is no item available.
-        </h6>
     }
 </div>

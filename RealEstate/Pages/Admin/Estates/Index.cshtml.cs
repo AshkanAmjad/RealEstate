@@ -40,7 +40,11 @@ namespace RealEstate.Pages.Admin.Estates
 
             if (_context.Estate != null)
             {
-                IndexDto = await _context.Estate.Include(c=>c.Category).ToListAsync();
+                IndexDto = await _context.Estate.Include(c => c.Category).ToListAsync();
+            }
+            if(IndexDto.Count == 0)
+            {
+                TempData["MessageType"] = "availableError";
             }
 
             return Page();

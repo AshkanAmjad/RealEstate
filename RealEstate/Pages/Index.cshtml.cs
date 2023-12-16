@@ -30,6 +30,10 @@ namespace RealEstate.Pages
 
             }
             viewmodel = await _context.Estate.ToListAsync();
+            if(viewmodel.Count == 0)
+            {
+                TempData["MessageType"] = "availableError";
+            }
             return Page();
         }
         #endregion

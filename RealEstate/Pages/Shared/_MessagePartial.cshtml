@@ -37,4 +37,21 @@
             })
         </script>
     }
+    else if (errorType == "availableError")
+    {
+        <script>
+            swal.fire({
+                title: 'Error',
+                icon: 'error',
+                text: 'There is no item available.',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutDown'
+
+                }
+            })
+        </script>
+    }
 }

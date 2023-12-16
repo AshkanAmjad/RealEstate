@@ -37,6 +37,10 @@ namespace RealEstate.Pages.Admin.Categories
             {
                 CategoryModel = await _context.Category.ToListAsync();
             }
+            if(CategoryModel.Count == 0)
+            {
+                TempData["MessageType"] = "availableError";
+            }
         }
         #endregion
     }
