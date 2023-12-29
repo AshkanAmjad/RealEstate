@@ -3,7 +3,9 @@
 @{
     ViewData["Title"] = "Home page";
 }
-<div id="carouselExampleCaptions" class="carousel carousel-dark slide carousel-fade col-12 shadow" data-bs-ride="carousel">
+<link href="~/css/swiper/swiper-bundle.min.css" rel="stylesheet" />
+
+@* <div id="carouselExampleCaptions" class="carousel carousel-dark slide carousel-fade col-12 shadow" data-bs-ride="carousel">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -40,6 +42,32 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
     </button>
+</div> *@
+
+<div class="swiper col-12 shadow w-100">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper ">
+        <!-- Slides -->
+        <div class="swiper-slide">
+            <img src="~/images/card-img/006.jpg" class=" w-100 h-100" alt="...">
+        </div>
+        <div class="swiper-slide swiper-slide-shadow">
+            <img src="~/images/card-img/003.jpg" class=" w-100 h-100" alt="...">
+        </div>
+        <div class="swiper-slide swiper-slide-shadow">
+            <img src="~/images/card-img/005.jpg" class=" w-100 h-100" alt="...">
+        </div>
+        ...
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination me-1"></div>
+
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev mx-3 text-danger"></div>
+    <div class="swiper-button-next mx-3 text-danger"></div>
+
+    <!-- If we need scrollbar -->
+    <div class="swiper-scrollbar"></div>
 </div>
 
 <div class="row m-0 p-3">
@@ -48,43 +76,50 @@
         @foreach (var item in Model.viewmodel)
         {
             <div class="p-2 col-xl-2 col-lg-3 col-md-4 col-sm-6">
-                <div class="card p-0 shadow ">
-                    <img src="~/images/Estates/@item.Image" class="card-img-top" />
-                    <div class="card-body fs-7 fw-bold p-1 p-md-2 my-2">
-                        <div class="d-flex flex-md-column justify-content-between">
-                            <p class="me-md-0 me-3 my-1">
-                                <i class="fa fa-home fa-lg text-danger mx-1"></i>
-                                <span class="ps-xl-2">@item.Title</span>
-                            </p>
-                            <p class="me-md-0 me-3 my-1">
-                                <i class="fa fa-list fa-lg text-danger mx-1"></i>
-                                <span class="ps-xl-2">@item.Category.Title</span>
-                            </p>
-                            <p class="me-md-0 me-3 my-1">
-                                <i class="fa fa-map-marker fa-lg text-danger mx-2"></i>
-                                <span class="ps-xl-2">@item.Address</span>
-                            </p>
-                            <p class="me-md-0 me-3 my-1">
-                                <i class="fa fa-arrows fa-lg text-danger mx-1"></i>
-                                <span class="ps-xl-2">
-                                    @item.Metrage
-                                    m<sup>2</sup>
+                <a asp-page="EstateDetails" asp-route-Id="@item.Id" class="text-decoration-none text-dark m-0">
+                    <div class="card p-0 shadow ">
+                        <img src="~/images/Estates/@item.Image" class="card-img-top" />
+                        <div class="card-body fs-7 fw-bold p-1 p-md-2 my-2">
+                                <div class="d-flex flex-md-column justify-content-between">
+                                    <div class="col-6 col-lg-12">
+                                        <p class="me-md-0 me-3 my-1">
+                                            <i class="fa fa-home fa-lg text-danger mx-1"></i>
+                                            <span class="ps-xl-2">@item.Title</span>
+                                        </p>
+                                        <p class="me-md-0 me-3 my-1">
+                                            <i class="fa fa-list fa-lg text-danger mx-1"></i>
+                                            <span class="ps-xl-2">@item.Category.Title</span>
+                                        </p>
+                                    </div>
+                                    <div class="col-6 col-lg-12">
+                                        <p class="me-md-0 me-3 my-1">
+                                            <i class="fa fa-map-marker fa-lg text-danger mx-2"></i>
+                                            <span class="ps-xl-2">@item.Address</span>
+                                        </p>
+                                        <p class="me-md-0 me-3 my-1">
+                                            <i class="fa fa-arrows fa-lg text-danger mx-1"></i>
+                                            <span class="ps-xl-2">
+                                                @item.Metrage
+                                                m<sup>2</sup>
+                                            </span>
+                                        </p>
+                                    </div>
+                                </div>
+                            <hr />
+                            <div>
+                                <i class="fa fa-money fa-lg text-danger mx-1 mb-2"></i>
+                                <span class="fw-bolder fs-6">
+                                    <u>@item.Price</u>
+                                    <span class="fw-bold">$</span>
                                 </span>
-                            </p>
-                        </div>
-                        <hr />
-                        <div>
-                            <i class="fa fa-money fa-lg text-danger mx-1 mb-2"></i>
-                            <span class="fw-bolder fs-6">
-                                <u>@item.Price</u>
-                                <span class="fw-bold">$</span>
-                            </span>
 
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         }
 
     }
 </div>
+<script src="~/js/swiper/swiper-bundle.min.js"></script>

@@ -1,0 +1,164 @@
+﻿@page
+@model RealEstate.Pages.EstateDetailsModel
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="row mt-5 mx-5">
+    <partial name="_PanelPartial" />
+    <div class="col-xl-9 col-12 mb-5">
+        <div class="card shadow">
+            <div class="card-header d-flex justify-content-center align-items-center">
+                <i class="fa fa-list fa-lg mx-2 pt-1"></i>
+                <h4 class="fw-bold mb-0">Details</h4>
+            </div>
+            <div class="card-body">
+                <div class="row p-0 mb-3 justify-content-center mx-auto">
+                    <img src="/images/Estates/@Model.ViewModel.Estate.Image" class="img-thumbnail w-100" style="height:15rem"/>
+                </div>
+                <div class="row my-3">
+                    <div class="col-xl-6 mt-3">
+                        <div class="row">
+                            <div class="col-6 col-sm-4 fs-7 ">
+                                <i class="fa fa-check-circle-o "></i>
+                                Id :
+                            </div>
+                            <div class="col-6 col-sm-8 fw-bold text-danger">
+                                @Model.ViewModel.Estate.Id.ToString()
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-6 col-sm-4 fs-7">
+                                <i class="fa fa-check-circle-o "></i>
+                                Title :
+                            </div>
+                            <div class="col-6 col-sm-8">
+                                @Model.ViewModel.Estate.Title.ToString()
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-6 col-sm-4 fs-7">
+                                <i class="fa fa-check-circle-o "></i>
+                                Type :
+                            </div>
+                            <div class="col-6 col-sm-8">
+                                @Model.ViewModel.Estate.Category.Title.ToString()
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-6 col-sm-4 fs-7">
+                                <i class="fa fa-check-circle-o "></i>
+                                Price :
+                            </div>
+                            <div class="col-6 col-sm-8">
+                                @Model.ViewModel.Estate.Price.ToString()
+                                <span class="fw-bold">$</span>
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-6 col-sm-4 fs-7">
+                                <i class="fa fa-check-circle-o "></i>
+                                Metrage :
+                            </div>
+                            <div class="col-6 col-sm-8">
+                                @Model.ViewModel.Estate.Metrage.ToString()
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6">
+                        <div class="row">
+                            <div class="col-6 col-sm-4 fs-7">
+                                <i class="fa fa-check-circle-o"></i>
+                                Address :
+                            </div>
+                            <div class="col-6 col-sm-8">
+                                @Model.ViewModel.Estate.Address.ToString()
+                            </div>
+                        </div>
+                        <div class="row my-3 fs-7">
+                            <div class="col-6 col-sm-4 fs-7">
+                                <i class="fa fa-check-circle-o "></i>
+                                Description :
+                            </div>
+                            <div class="col-6 col-sm-8">
+                                @{
+                                    if (Model.ViewModel.Estate.Description != null)
+                                    {
+                                        @Model.ViewModel.Estate.Description.ToString()
+
+                                    }
+                                    else if (Model.ViewModel.Estate.Description == null)
+                                    {
+                                        <span>none</span>
+                                    }
+                                }
+                            </div>
+                        </div>
+
+                    </div>
+                </div>                    
+                <div class="row col-12 m-0 ">
+                    <form method="post" class="col-6">
+                        <button class="btn btn-outline-danger w-100 mt-3 fs-7" type="submit">
+                            <i class="fa fa-heart d-block d-sm-inline mx-2"></i>
+                            Add favorite
+                        </button>
+                    </form>
+                    <div class="col-6">
+                        <a asp-page="Index" class="btn btn-outline-secondary w-100 mt-3 fs-7">
+                            <i class="fa fa-times d-block d-sm-inline mx-2"></i>
+                            Cancel
+                        </a>
+                    </div>
+                </div>
+                @if (Model.ViewModel.SuggestedEstates.Any() ) {
+                    <hr />
+                    <div class="row my-1 p-2 justify-content-center ">
+                        <div class="row col-12 border p-0 rounded">
+                            @foreach (var item in Model.ViewModel.SuggestedEstates)
+                            {
+                                <div class="p-2 col-lg-4 col-sm-6">
+                                    <a asp-page="EstateDetails" asp-route-Id="@item.Id" class="text-decoration-none text-dark m-0">
+                                        <div class="card p-0 shadow ">
+                                            <img src="~/images/Estates/@item.Image" class="card-img-top" />
+                                            <div class="card-body fs-7 fw-bold p-1 p-md-2 my-2">
+                                                <div class="d-flex flex-md-column justify-content-between">
+                                                    <div class="col-6 col-lg-12">
+                                                        <p class="me-md-0 me-3 my-1">
+                                                            <i class="fa fa-home fa-lg text-danger mx-1"></i>
+                                                            <span class="ps-xl-2">@item.Title</span>
+                                                        </p>
+                                                        <p class="me-md-0 me-3 my-1">
+                                                            <i class="fa fa-map-marker fa-lg text-danger mx-2"></i>
+                                                            <span class="ps-xl-2">@item.Address</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-6 col-lg-12">
+                                                        <p class="me-md-0 me-3 my-1">
+                                                            <i class="fa fa-arrows fa-lg text-danger mx-1"></i>
+                                                            <span class="ps-xl-2">
+                                                                @item.Metrage
+                                                                m<sup>2</sup>
+                                                            </span>
+                                                        </p>
+                                                        <div>
+                                                            <i class="fa fa-money fa-lg text-danger mx-1 mb-2"></i>
+                                                            <span class="ps-xl-2">
+                                                                <u>@item.Price</u>
+                                                                <span>$</span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
