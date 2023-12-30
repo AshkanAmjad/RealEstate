@@ -1,11 +1,11 @@
 ﻿@page
+@using RealEstate.Utilities
 @model RealEstate.Pages.EstateDetailsModel
 @{
     ViewData["Title"] = "Details";
 }
-<div class="row mt-5 mx-5">
-    <partial name="_PanelPartial" />
-    <div class="col-xl-9 col-12 mb-5">
+<div class="row mt-5 mx-sm-5 mx-1 ">
+    <div class="col-12 mb-5">
         <div class="card shadow">
             <div class="card-header d-flex justify-content-center align-items-center">
                 <i class="fa fa-list fa-lg mx-2 pt-1"></i>
@@ -13,7 +13,7 @@
             </div>
             <div class="card-body">
                 <div class="row p-0 mb-3 justify-content-center mx-auto">
-                    <img src="/images/Estates/@Model.ViewModel.Estate.Image" class="img-thumbnail w-100" style="height:15rem"/>
+                    <img src="/images/Estates/@Model.ViewModel.Estate.Image" class="img-thumbnail w-100" style="height:15rem" />
                 </div>
                 <div class="row my-3">
                     <div class="col-xl-6 mt-3">
@@ -95,22 +95,24 @@
                         </div>
 
                     </div>
-                </div>                    
-                <div class="row col-12 m-0 ">
-                    <form method="post" class="col-6">
-                        <button class="btn btn-outline-danger w-100 mt-3 fs-7" type="submit">
-                            <i class="fa fa-heart d-block d-sm-inline mx-2"></i>
+                </div>
+                <div class="row col-12 m-0">
+                    <form method="post" class=" @((((User.Identity.IsAuthenticated) && (User.IsInRole(Roles.Admin))) || (!User.Identity.IsAuthenticated))  ?"d-none":"col-sm-6" )">
+                        <button  asp-page-handler="AddToFavorites" asp-route-Id="@Model.ViewModel.Estate.Id" type="submit"
+                                class="btn btn-outline-danger w-100 mt-3 fs-7 ">
+                            <i class="fa fa-heart mx-2"></i>
                             Add favorite
                         </button>
                     </form>
-                    <div class="col-6">
+                    <div class="col-5  @((User.Identity.IsAuthenticated) && (!User.IsInRole(Roles.Admin)) ? "col-sm-6" : "mx-auto")">
                         <a asp-page="Index" class="btn btn-outline-secondary w-100 mt-3 fs-7">
-                            <i class="fa fa-times d-block d-sm-inline mx-2"></i>
+                            <i class="fa fa-times mx-2"></i>
                             Cancel
                         </a>
                     </div>
                 </div>
-                @if (Model.ViewModel.SuggestedEstates.Any() ) {
+                @if (Model.ViewModel.SuggestedEstates.Any())
+                {
                     <hr />
                     <div class="row my-1 p-2 justify-content-center ">
                         <div class="row col-12 border p-0 rounded">
@@ -149,7 +151,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                
+
                                             </div>
                                         </div>
                                     </a>

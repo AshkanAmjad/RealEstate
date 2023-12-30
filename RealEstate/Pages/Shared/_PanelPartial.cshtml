@@ -7,14 +7,17 @@
                 <i class="fa fa-home mx-2 "></i>
                 Estates Management
             </a>
-            <a href="/Admin/Categories" class="btn btn-outline-danger rounded-0 text-start rounded-bottom">
+            <a href="/Admin/Categories" class="btn btn-outline-danger rounded-0 rounded-bottom text-start ">
                 <i class="fa fa-list mx-2 "></i>
                 Categories Management
             </a>
         }
-        <a href="/Panel/Favorites" class="btn btn-outline-danger text-start rounded">
-            <i class="fa fa-heart mx-2 "></i>
+        @if (User.IsInRole(Roles.User))
+        {
+            <a href="/Panel/Favorites" class="btn btn-outline-danger text-start">
+                <i class="fa fa-heart mx-2 "></i>
             Favories Management
         </a>
+        }
     </div>
 </div>

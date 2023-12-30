@@ -49,3 +49,11 @@ body {
     width: 600px;
     height: 300px;
 }
+
+.right,.left,.middle{
+    opacity:0.8;
+}
+
+.right:hover, .left:hover, .middle:hover{
+    opacity:1;
+}
