@@ -31,12 +31,12 @@ namespace RealEstate.Areas.Identity.Pages.Account
                 ModelState.AddModelError(string.Empty, Input.ErrorMessage);
             }
 
-            Input = new()
-            {
-                ReturnUrl = returnUrl
-            };
+            //Input = new()
+            //{
+            //    ReturnUrl = returnUrl
+            //};
 
-            returnUrl ??= Url.Content("~/");
+            returnUrl ??= Url.Content("/index");
 
             if(User.Identity.IsAuthenticated)
             {
@@ -48,13 +48,13 @@ namespace RealEstate.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            returnUrl ??= Url.Content("/index");
             if (ModelState.IsValid)
             {
-                returnUrl ??= Url.Content("/index");
                 var result = await _signInManager.PasswordSignInAsync(Input.phoneNumber, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                return RedirectToPage(returnUrl, new { successfuly = true });
+                      return RedirectToPage("/index", new { successfuly = true });
                 }
                 else
                 {

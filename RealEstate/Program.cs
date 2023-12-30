@@ -4,6 +4,7 @@ using RealEstate.Data;
 using RealEstate.Models;
 using RealEstate.Services.Implementation;
 using RealEstate.Services.Interface;
+using RealEstate.Utilities;
 
 namespace RealEstate
 {
@@ -13,18 +14,39 @@ namespace RealEstate
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            #region DataBase
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+            #endregion
 
+            #region Identity
             builder.Services.AddDefaultIdentity<UserModel>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-            builder.Services.AddRazorPages();
+            #endregion
+
+            #region Authorization
+            builder.Services.AddAuthorization(options=>
+            {
+                options.AddPolicy(AuthorizationPolicies.AdminPolicy, p => p.RequireRole(Roles.Admin));
+            });
+            #endregion
+
+            #region RazorPages
+            builder.Services.AddRazorPages(options =>
+            {
+                options.Conventions.AuthorizeFolder("/Admin",AuthorizationPolicies.AdminPolicy);
+            });
+            #endregion
+
+            #region Scope
             builder.Services.AddScoped<IManagementService, ManagementService>();
+            #endregion
+
             var app = builder.Build();
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -43,6 +65,7 @@ namespace RealEstate
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapRazorPages();
