@@ -20,7 +20,7 @@ namespace RealEstate.Pages
         #endregion
 
         #region OnGet
-        public async Task<IActionResult> OnGet(int id)
+        public async Task<IActionResult> OnGet(int id, bool successfuly = false, bool error = false)
         {
             if (id <= 0)
                 return NotFound();
@@ -38,6 +38,11 @@ namespace RealEstate.Pages
                 .Take(3)
                 .ToList()
             };
+            if(successfuly ==true)
+                TempData["MessageType"] = "success";
+            else if(error == true)
+                TempData["MessageType"] = "error";
+
             return Page();
         }
         #endregion
@@ -48,10 +53,10 @@ namespace RealEstate.Pages
             if (User is null || !User.Identity.IsAuthenticated)
                 return RedirectToPage("Identity/Account/Login?returnUrl=/EstateDetails?id=" + id);
             if (id <= 0)
-                return NotFound();
+                return RedirectToPage("EstateDetails", new { error = true });
             var estate = await _context.Estate.FirstOrDefaultAsync(e => e.Id == id);
             if (estate == null)
-                return NotFound();
+                return RedirectToPage("EstateDetails", new { error = true });
             var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
             var check = await _context.Favorites.FirstOrDefaultAsync(f => f.UserId == user.Id && f.EstateId == id);
             if (check == null)
@@ -63,7 +68,7 @@ namespace RealEstate.Pages
                 });
                 await _context.SaveChangesAsync();
             }
-            return RedirectToPage("EstateDetails", new { id });
+            return RedirectToPage("EstateDetails", new { id, successfuly = true });
         }
         #endregion
     }
