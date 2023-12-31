@@ -140,7 +140,7 @@
                             <div>
                                 <i class="fa fa-money fa-lg text-danger mx-1 mb-2"></i>
                                 <span class="fw-bolder fs-6">
-                                    <u>@item.Price</u>
+                                    <u>@item.Price.ToDollar()</u>
                                     <span class="fw-bold">$</span>
                                 </span>
 
@@ -150,7 +150,13 @@
                 </a>
             </div>
         }
-
+        <div class="row p-0">
+            <div class="col-1 m-0">
+                <a asp-page="/AllEstates" class="btn btn-sm btn-danger mx-2 pb-2 pt-2 px-3 mb-4 mt-2">&lArr;</a>
+            </div>
+        </div>
     }
+
 </div>
+
 <script src="~/js/swiper/swiper-bundle.min.js"></script>

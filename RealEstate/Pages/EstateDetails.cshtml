@@ -50,7 +50,7 @@
                                 Price :
                             </div>
                             <div class="col-6 col-sm-8">
-                                @Model.ViewModel.Estate.Price.ToString()
+                                @Model.ViewModel.Estate.Price.ToDollar()
                                 <span class="fw-bold">$</span>
                             </div>
                         </div>
@@ -145,7 +145,7 @@
                                                         <div>
                                                             <i class="fa fa-money fa-lg text-danger mx-1 mb-2"></i>
                                                             <span class="ps-xl-2">
-                                                                <u>@item.Price</u>
+                                                                @item.Price.ToDollar()
                                                                 <span>$</span>
                                                             </span>
                                                         </div>

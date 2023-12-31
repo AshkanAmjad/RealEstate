@@ -16,7 +16,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow fixed-top m-0 p-0">
+        <nav class="navbar navbar-expand-md navbar-toggleable-md navbar-light bg-white border-bottom box-shadow fixed-top m-0 p-0">
             <a class="navbar-brand" asp-page="/Index">
                 <img src="/images/icon/logo.svg" class="brand-animation position-relative ms-2" />
             </a>
@@ -25,19 +25,21 @@
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex px-4 justify-content-between">
+            <div class="navbar-collapse collapse d-md-inline-flex px-4 justify-content-between">
                 <ul class="navbar-nav flex-grow-1 my-1">
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                        <a class="nav-link text-dark @((User.Identity.IsAuthenticated)?"":"px-2")" asp-area="" asp-page="/Index">Home</a>
                     </li>
-                    <li class="d-none d-sm-block py-2 mx-1 text-muted">|</li>
+                    <li class="d-none d-md-block py-2 mx-1 text-muted">|</li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="">Estates</a>
+                        <a class="nav-link text-dark @((User.Identity.IsAuthenticated)?"":"px-2")" asp-area="" asp-page="/AllEstates">Estates</a>
                     </li>
-                    <li class="d-none d-sm-block py-2 mx-1 text-muted">|</li>
+                    @if(User.Identity.IsAuthenticated && User.IsInRole(Roles.Admin)){
+                    <li class="d-none d-md-block py-2 mx-1 text-muted">|</li>
                     <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                    </li>
+                            <a class="nav-link text-dark @((User.Identity.IsAuthenticated)?"":"px-2")" href="~/admin/estates">Admin</a>
+                        </li>
+                    }
                 </ul>
                 @await Component.InvokeAsync("HeaderComponent")
             </div>

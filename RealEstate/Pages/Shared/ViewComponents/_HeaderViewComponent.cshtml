@@ -8,7 +8,7 @@
     @if (SignInManager.IsSignedIn(User))
     {
         <li class="nav-item">
-            <a  href="/favorites"  class="nav-link text-dark" title="Manage">Hello <span class="text-danger">@Model?.FullName</span></a>
+            <a  href="/favorites"  class="nav-link text-dark" title="Manage">Hello <span class="text-danger fs-7">@Model?.FullName</span></a>
         </li>
         <li class="d-none d-sm-block py-2 mx-1 text-muted">|</li>
         <li class="nav-item">

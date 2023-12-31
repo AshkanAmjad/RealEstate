@@ -1,0 +1,57 @@
+﻿@page
+@model RealEstate.Pages.AllEstatesModel
+@{
+    ViewData["Title"] = "Estates";
+
+}
+<div class="row  p-3 border mx-2 mx-sm-3 my-3 shadow rounded">
+    @if (Model.viewmodel.Any())
+    {
+        @foreach (var item in Model.viewmodel)
+        {
+            <div class="p-2 col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                <a asp-page="EstateDetails" asp-route-Id="@item.Id" class="text-decoration-none text-dark m-0">
+                    <div class="card p-0 shadow ">
+                        <img src="~/images/Estates/@item.Image" class="card-img-top" />
+                        <div class="card-body fs-7 fw-bold p-1 p-md-2 my-2">
+                            <div class="d-flex flex-md-column justify-content-between">
+                                <div class="col-6 col-lg-12">
+                                    <p class="me-md-0 me-3 my-1">
+                                        <i class="fa fa-home fa-lg text-danger mx-1"></i>
+                                        <span class="ps-xl-2">@item.Title</span>
+                                    </p>
+                                    <p class="me-md-0 me-3 my-1 d-flex">
+                                        <i class="fa fa-list fa-lg text-danger mx-1 mt-1"></i>
+                                        <span class="ps-xl-2">@item.Category.Title</span>
+                                    </p>
+                                </div>
+                                <div class="col-6 col-lg-12">
+                                    <p class="me-md-0 me-3 my-1">
+                                        <i class="fa fa-map-marker fa-lg text-danger mx-2"></i>
+                                        <span class="ps-xl-2">@item.Address</span>
+                                    </p>
+                                    <p class="me-md-0 me-3 my-1">
+                                        <i class="fa fa-arrows fa-lg text-danger mx-1"></i>
+                                        <span class="ps-xl-2">
+                                            @item.Metrage
+                                            m<sup>2</sup>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
+                            <hr />
+                            <div>
+                                <i class="fa fa-money fa-lg text-danger mx-1 mb-2"></i>
+                                <span class="fw-bolder fs-6">
+                                    <u>@item.Price.ToDollar()</u>
+                                    <span class="fw-bold">$</span>
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    }
+</div>

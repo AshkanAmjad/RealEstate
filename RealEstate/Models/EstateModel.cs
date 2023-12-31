@@ -31,6 +31,8 @@ namespace RealEstate.Models
         [MaxLength(1000, ErrorMessage = "{0} cannot be longer than {1} characters.")]
         public string Address { get; set; }
 
+        public DateTime DateCreated { get; set; }=DateTime.Now;
+
         public int CategoryId {  get; set; }
         #region Relation
         [ForeignKey(nameof(CategoryId))]
