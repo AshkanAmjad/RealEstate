@@ -3,40 +3,44 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RealEstate.Data;
 using RealEstate.Models;
+using RealEstate.Utilities;
 
 namespace RealEstate.Pages
 {
     public class AllEstatesModel : PageModel
     {
-        #region Constructor
         private readonly ApplicationDbContext _context;
+
         public AllEstatesModel(ApplicationDbContext context)
         {
             _context = context;
         }
-        public List<EstateModel>? viewmodel { get; set; }
-        #endregion
 
-        #region OnGet
-        public async Task<IActionResult> OnGet(bool successfuly = false, bool error = false)
+        public PaginatedList<EstateModel> EstateList { get; set; }
+
+        public async Task<IActionResult> OnGetAsync(int? pageIndex, bool successfuly = false, bool error = false)
         {
-            if (successfuly == true)
-            {
-                TempData["MessageType"] = "success";
-            }
-            else if (error == true)
-            {
-                TempData["MessageType"] = "error";
+            IQueryable<EstateModel> estateQuery = _context.Estate
+                .OrderByDescending(e => e.DateCreated)
+                .Include(c => c.Category);
 
-            }
-            viewmodel = await _context.Estate.OrderByDescending(e => e.DateCreated).Include(c => c.Category).ToListAsync();
-            if (viewmodel.Count == 0)
+            int pageSize = 12; // Set your desired page size here
+            EstateList = await PaginatedList<EstateModel>.CreateAsync(estateQuery.AsNoTracking(), pageIndex ?? 1, pageSize);
+
+            if (EstateList.Count == 0)
             {
                 TempData["MessageType"] = "availableError";
             }
+            if (successfuly)
+            {
+                TempData["MessageType"] = "success";
+            }
+            else if (error)
+            {
+                TempData["MessageType"] = "error";
+            }
+
             return Page();
         }
-        #endregion
     }
 }
-
