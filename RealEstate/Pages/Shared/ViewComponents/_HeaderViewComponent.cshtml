@@ -1,0 +1,36 @@
+﻿@using RealEstate.Models
+@using RealEstate.Models.ViewModels;
+@model HeaderViewModel;
+@inject SignInManager<UserModel> SignInManager
+@inject UserManager<UserModel> UserManager
+
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <a  href="/favorites"  class="nav-link text-dark" title="Manage">Hello <span class="text-danger">@Model?.FullName</span></a>
+        </li>
+        <li class="d-none d-sm-block py-2 mx-1 text-muted">|</li>
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">
+                <i class="fa fa-user-plus mx-2"></i>
+                Register
+            </a>
+        </li>
+        <li class="d-none d-sm-block py-2 mx-1 text-muted">|</li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">
+                <i class="fa fa-sign-in mx-2"></i>
+                Login
+            </a>
+        </li>
+    }
+</ul>

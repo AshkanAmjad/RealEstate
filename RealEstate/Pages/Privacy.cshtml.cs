@@ -4,7 +4,6 @@ using RealEstate.Utilities;
 
 namespace RealEstate.Pages
 {
-    [Authorize(Roles = Roles.Admin)]
     public class PrivacyModel : PageModel
     {
 
