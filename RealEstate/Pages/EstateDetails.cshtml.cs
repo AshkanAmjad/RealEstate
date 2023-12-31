@@ -25,6 +25,7 @@ namespace RealEstate.Pages
             if (id <= 0)
                 return NotFound();
             var estate = await _context.Estate
+                .OrderByDescending(e => e.DateCreated)
                 .Include(c => c.Category)
                 .FirstOrDefaultAsync(e => e.Id == id);
             if (estate == null)

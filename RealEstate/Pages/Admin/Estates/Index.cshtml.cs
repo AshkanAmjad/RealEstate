@@ -40,7 +40,7 @@ namespace RealEstate.Pages.Admin.Estates
 
             if (_context.Estate != null)
             {
-                IndexDto = await _context.Estate.Include(c => c.Category).ToListAsync();
+                IndexDto = await _context.Estate.OrderByDescending(e=>e.DateCreated).Include(c => c.Category).ToListAsync();
             }
             if(IndexDto.Count == 0)
             {
