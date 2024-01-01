@@ -1,15 +1,16 @@
-﻿@if(TempData["MessageType"]!=null){
+﻿@if (TempData["MessageType"] != null)
+{
     string errorType = (string)TempData["MessageType"];
-    if(errorType == "error")
+    if (errorType == "error")
     {
         <script>
             swal.fire({
-                title:'Error',
-                icon:'error',
+                title: 'Error',
+                icon: 'error',
                 showConfirmButton: false,
                 timer: 4000,
-                position:'top-end',
-                showClass:{
+                position: 'top-end',
+                showClass: {
                     popup: 'animate__animated animate__fadeInDown'
                 },
                 hideClass: {
@@ -19,7 +20,8 @@
 
             })
         </script>
-    }else if(errorType == "success")
+    }
+    else if (errorType == "success")
     {
         <script>
             swal.fire({
@@ -45,7 +47,7 @@
                 icon: 'error',
                 text: 'There is no item available.',
                 customClass: {
-                    confirmButton:'btn btn-danger px-4'
+                    confirmButton: 'btn btn-danger px-4'
                 },
                 showClass: {
                     popup: 'animate__animated animate__fadeInDown'
@@ -54,7 +56,28 @@
                     popup: 'animate__animated animate__fadeOutDown'
 
                 },
-                buttonsStyling:false
+                buttonsStyling: false
+            })
+        </Script>
+    }
+    else if (errorType == "searchError") {
+        <script>
+            swal.fire({
+                title: 'Error',
+                icon: 'error',
+                text: 'Completion of two content inputs and filters is required.',
+                customClass: {
+                    confirmButton: 'btn btn-danger px-4'
+                },
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutDown'
+
+                },
+                buttonsStyling: false
+
             })
         </script>
     }

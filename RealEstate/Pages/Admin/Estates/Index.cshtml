@@ -27,6 +27,25 @@
                 <h4 class="mx-auto fw-bold mb-0">Estates Management</h4>
             </div>
             <div class="card-body">
+                <form class="row my-2" method="get">
+                    <div class="col-sm-6 col-md-6 my-2 my-sm-0">
+                        <input name="searchContext" placeholder="Enter your content ..." type="text" class="form-control" />
+                    </div>
+                    <div class="col-sm-4 col-md-4 p-0 col-8">
+                        <select class="form-control col-md-4" name="selectedFilter">
+                            <option selected>Choose your filter</option>
+                            <option value="1">Type</option>
+                            <option value="2">Address</option>
+                            <option value="3">Metrage</option>
+                            <option value="4">Price</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2 col-md-2 col-4">
+                        <button type="submit" class="btn btn-primary fw-bold w-100">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </form>
                 @if (Model.EstateList.Any())
                 {
                     <table class="table table-bordered table-striped table-hover mx-auto  text-center">
@@ -63,7 +82,7 @@
                             {
                                 <tr>
                                     <td>
-                                        <img src="/images/Thumb/@item.Image" class="img-thumbnail my-1 zoom"/>
+                                        <img src="/images/Thumb/@item.Image" class="img-thumbnail my-1 zoom" />
                                     </td>
                                     <td>
                                         @item.Category.Title
