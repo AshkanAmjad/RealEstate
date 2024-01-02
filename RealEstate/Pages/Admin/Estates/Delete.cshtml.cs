@@ -31,7 +31,7 @@ namespace RealEstate.Pages.Admin.Estates
         {
             if (Id <= 0)
                 return NotFound();
-            ViewModel = await _context.Estate.Include(c=>c.Category).FirstOrDefaultAsync(e=>e.Id==Id);
+            ViewModel = _managementService.GetEstateAndCategoryWithId(Id);
             if (ViewModel == null)
                 return NotFound();
             return Page();

@@ -31,7 +31,7 @@ namespace RealEstate.Pages.Admin.Estates
         {
             if (Id <= 0)
                 return NotFound();
-            var estate = await _context.Estate.FindAsync(Id);
+            var estate = _managementService.GetEstateWithId(Id);
             if (estate == null)
                 return NotFound();
             InitCategories();

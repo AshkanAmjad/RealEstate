@@ -35,7 +35,7 @@ namespace RealEstate.Pages.Admin.Categories
             }
             if (_context.Category != null)
             {
-                CategoryModel = await _context.Category.ToListAsync();
+               CategoryModel = _managementService.GetCategories();
             }
             if(CategoryModel.Count == 0)
             {

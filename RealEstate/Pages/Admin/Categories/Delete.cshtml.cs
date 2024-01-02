@@ -32,7 +32,7 @@ namespace RealEstate.Pages.Admin.Categories
                 return NotFound();
             }
 
-            var categorymodel = await _context.Category.FirstOrDefaultAsync(m => m.Id == id);
+            var categorymodel = _managementService.GetCategoryWithId(id);
 
             if (categorymodel == null)
             {
@@ -51,7 +51,7 @@ namespace RealEstate.Pages.Admin.Categories
                 return NotFound();
             }
 
-            var categorymodel = await _context.Category.FindAsync(id);
+            var categorymodel = _managementService.GetCategoryWithId(id);
 
             if (categorymodel != null)
             {

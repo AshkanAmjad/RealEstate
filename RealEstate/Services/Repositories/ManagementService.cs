@@ -1,4 +1,5 @@
-﻿using RealEstate.Convertors;
+﻿using Microsoft.EntityFrameworkCore;
+using RealEstate.Convertors;
 using RealEstate.Data;
 using RealEstate.Models;
 using RealEstate.Models.ViewModels.EstatesViewModels;
@@ -32,7 +33,7 @@ namespace RealEstate.Services.Implementation
 
         public async Task<bool> CreateEstatesAsync(EstateViewModel model)
         {
-            if(model.Estate.Image == null)
+            if (model.Estate.Image == null)
             {
                 model.Estate.Image = "default-image.png";
             }
@@ -67,9 +68,9 @@ namespace RealEstate.Services.Implementation
 
             model.Estate.Image = Guid.NewGuid().ToString() + Path.GetExtension(model.ImgUp.FileName);
             string savePath = Path.Combine(Directory.GetCurrentDirectory(), saveDir, model.Estate.Image);
-            using (var filestream =new FileStream(savePath, FileMode.Create)) 
+            using (var filestream = new FileStream(savePath, FileMode.Create))
                 model.ImgUp.CopyTo(filestream);
-            
+
 
             #region ThumbImg
             if (model.Estate.Image != "default-image.png")
@@ -91,7 +92,8 @@ namespace RealEstate.Services.Implementation
             if (Directory.Exists(saveDirThumb))
             {
                 string deletePathThumb = Path.Combine(Directory.GetCurrentDirectory(), saveDirThumb, model.Image);
-                if (System.IO.File.Exists(deletePathThumb)) { 
+                if (System.IO.File.Exists(deletePathThumb))
+                {
                     if (model.Image != "default-image.png")
                         System.IO.File.Delete(deletePathThumb);
                 }
@@ -117,7 +119,7 @@ namespace RealEstate.Services.Implementation
 
         public bool DeleteEstate(EstateModel model)
         {
-             _context.Remove(model);
+            _context.Remove(model);
             return true;
         }
 
@@ -132,6 +134,35 @@ namespace RealEstate.Services.Implementation
             _context.Update(model);
             return true;
         }
+
+        public IQueryable<EstateModel> GetEstates()
+            => _context.Estate.OrderByDescending(e => e.DateCreated).Include(c => c.Category).AsQueryable();
+
+        public  IQueryable<EstateModel> FilterEstates(string? searchContext, int? selectedFilter)
+        {
+            if (selectedFilter == 1)
+                return _context.Estate.OrderByDescending(e => e.DateCreated).Include(c => c.Category).Where(e => e.Category.Title == searchContext);
+            else if (selectedFilter == 2)
+                return  _context.Estate.OrderByDescending(e => e.DateCreated).Include(c => c.Category).Where(e => e.Address == searchContext);
+            else if (selectedFilter == 3)
+                 return _context.Estate.OrderByDescending(e => e.DateCreated).Include(c => c.Category).Where(e => e.Metrage.ToString() == searchContext);
+            else if (selectedFilter == 4)
+                return _context.Estate.OrderByDescending(e => e.DateCreated).Include(c => c.Category).Where(e => e.Price.ToString() == searchContext);
+            return GetEstates();
+        }
+
+        public IList<CategoryModel> GetCategories()
+            => _context.Category.ToList();
+
+        public CategoryModel GetCategoryWithId(int? id)
+            => _context.Category.FirstOrDefault(m => m.Id == id);
+
+       public EstateModel GetEstateAndCategoryWithId(int id)
+            => _context.Estate.Include(c => c.Category).FirstOrDefault(e => e.Id == id);
+
+        public EstateModel GetEstateWithId(int id)
+            => _context.Estate.Find(id);
+
 
     }
 }

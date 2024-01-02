@@ -12,10 +12,12 @@ namespace RealEstate.Pages.Admin.Estates
     {
         #region Construvtor
         private readonly ApplicationDbContext _context;
+        private readonly IManagementService _managementService;
 
-        public DetailsModel(ApplicationDbContext context)
+        public DetailsModel(ApplicationDbContext context, IManagementService managementService)
         {
             _context = context;
+            _managementService = managementService;
         }
         [BindProperty]
         public EstateModel? ViewModel { get; set; }
@@ -26,7 +28,7 @@ namespace RealEstate.Pages.Admin.Estates
         {
             if (Id <= 0)
                 return NotFound();
-            ViewModel = await _context.Estate.Include(c => c.Category).FirstOrDefaultAsync(e => e.Id == Id);
+            ViewModel = _managementService.GetEstateAndCategoryWithId(Id);
             if (ViewModel == null)
                 return NotFound();
             return Page();
