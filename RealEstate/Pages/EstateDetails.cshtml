@@ -104,8 +104,8 @@
                             Add favorite
                         </button>
                     </form>
-                    <div class="col-5  @((User.Identity.IsAuthenticated) && (!User.IsInRole(Roles.Admin)) ? "col-sm-6" : "mx-auto")">
-                        <a asp-page="Index" class="btn btn-outline-secondary w-100 mt-3 fs-7">
+                    <div class="col-12  @((User.Identity.IsAuthenticated) && (!User.IsInRole(Roles.Admin)) ? "col-sm-6" : "mx-auto")">
+                        <a asp-page="AllEstates" class="btn btn-outline-secondary w-100 mt-3 fs-7">
                             <i class="fa fa-times mx-2"></i>
                             Cancel
                         </a>

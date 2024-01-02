@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using RealEstate.Data;
-using RealEstate.Models;    
+using RealEstate.Models;
+using RealEstate.Services.Interface;
+using RealEstate.Utilities;
 
 namespace RealEstate.Pages.Favorites
 {
@@ -11,31 +13,32 @@ namespace RealEstate.Pages.Favorites
     public class IndexModel : PageModel
     {
         #region Constructor
-        public readonly ApplicationDbContext _Context;
+        public readonly ApplicationDbContext _context;
+        private readonly IManagementService _managementService;
 
-        public IndexModel(ApplicationDbContext context)
+        public IndexModel(ApplicationDbContext context,IManagementService managementService)
         {
-            _Context = context;
+            _context = context;
+            _managementService = managementService;
         }
-        public List<FavoriteModel> viewmodel { get; set; }
+        public PaginatedList<FavoriteModel> FavoriteList { get; set; }
+
         #endregion
 
         #region OnGet
-        public async Task<IActionResult> OnGet(bool successfuly = false)
+        public async Task<IActionResult> OnGet(int? pageIndex,bool successfuly = false)
         {
-            //if (!User.Identity.IsAuthenticated)
-            //    return Redirect("/Identity/Account/Login?returnUrl=/favorites");
-            var user = await _Context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
-            viewmodel= await _Context.Favorites.Include(e=>e.Estate)
-                .Where(f=>f.UserId==user.Id).ToListAsync();
-            if (viewmodel.Count == 0)
-            {
-                TempData["MessageType"] = "availableError";
-            }
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
+            IQueryable<FavoriteModel> favoritesQuery = _managementService.GetFavoritesByUserId(user);
+
             if (successfuly == true)
-            {
                 TempData["MessageType"] = "success";
-            }
+            
+            int pageSize = 12;// Set your desired page size here
+            FavoriteList = await PaginatedList<FavoriteModel>.CreateAsync(favoritesQuery.AsNoTracking(), pageIndex ?? 1, pageSize);
+
+            if (FavoriteList.Count == 0)
+                TempData["MessageType"] = "availableError";
             return Page();
         }
         #endregion

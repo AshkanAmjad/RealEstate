@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using RealEstate.Data;
 using RealEstate.Models;
 using RealEstate.Services.Interface;
+using RealEstate.Utilities;
 
 namespace RealEstate.Pages.Admin.Categories
 {
@@ -18,11 +19,12 @@ namespace RealEstate.Pages.Admin.Categories
             _managementService = managementService;
         }
 
-        public IList<CategoryModel> CategoryModel { get;set; } = default!;
+        public PaginatedList<CategoryModel> CategoryList { get; set; }
+
         #endregion
 
         #region OnGet
-        public async Task OnGetAsync(bool successfuly = false, bool error = false)
+        public async Task OnGetAsync(int? pageIndex ,bool successfuly = false, bool error = false)
         {
             if (successfuly == true)
             {
@@ -35,9 +37,12 @@ namespace RealEstate.Pages.Admin.Categories
             }
             if (_context.Category != null)
             {
-               CategoryModel = _managementService.GetCategories();
+                IQueryable<CategoryModel> categoryQuery= _managementService.GetCategories();
+                int pageSize = 10;// Set your desired page size here
+                CategoryList = await PaginatedList<CategoryModel>.CreateAsync(categoryQuery.AsNoTracking(), pageIndex ?? 1, pageSize);
             }
-            if(CategoryModel.Count == 0)
+
+            if (CategoryList.Count == 0)
             {
                 TempData["MessageType"] = "availableError";
             }

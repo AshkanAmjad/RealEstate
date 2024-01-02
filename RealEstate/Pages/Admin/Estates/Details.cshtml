@@ -5,7 +5,7 @@
 @{
     ViewData["Title"] = "Details";
 }
-<div class="row mt-5 mx-sm-5 mx-1 d-none d-sm-flex">
+<div class="row mt-5 mx-sm-5 mx-1">
     <partial name="_PanelPartial" />
     <div class="col-xl-9 col-12 mb-5">
         <div class="card shadow">
@@ -104,15 +104,15 @@
                     </div>
                 </div>
                 <div class="row col-12 m-0">
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
                         <a class="btn btn-outline-primary w-100 mt-3 fs-7" asp-page="Edit" asp-route-Id="@Model.ViewModel.Id">
-                            <i class="fa fa-edit mx-2 d-block d-sm-inline"></i>
+                            <i class="fa fa-edit mx-2"></i>
                             Edit
                         </a>
                     </div>
-                    <div class="col-6">
+                    <div class="col-12 col-sm-6">
                         <a asp-page="Index" class="btn btn-outline-secondary w-100 mt-3 fs-7">
-                            <i class="fa fa-times mx-2 d-block d-sm-inline"></i>
+                            <i class="fa fa-times mx-2"></i>
                             Cancel
                         </a>
                     </div>

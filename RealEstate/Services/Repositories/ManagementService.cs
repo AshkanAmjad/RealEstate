@@ -5,7 +5,10 @@ using RealEstate.Models;
 using RealEstate.Models.ViewModels.EstatesViewModels;
 using RealEstate.Security;
 using RealEstate.Services.Interface;
+using Microsoft.AspNetCore.Authorization;
+using SkiaSharp;
 using System.Drawing;
+
 
 namespace RealEstate.Services.Implementation
 {
@@ -151,8 +154,8 @@ namespace RealEstate.Services.Implementation
             return GetEstates();
         }
 
-        public IList<CategoryModel> GetCategories()
-            => _context.Category.ToList();
+        public IQueryable<CategoryModel> GetCategories()
+            => _context.Category.AsQueryable();
 
         public CategoryModel GetCategoryWithId(int? id)
             => _context.Category.FirstOrDefault(m => m.Id == id);
@@ -163,6 +166,8 @@ namespace RealEstate.Services.Implementation
         public EstateModel GetEstateWithId(int id)
             => _context.Estate.Find(id);
 
+        public IQueryable<FavoriteModel> GetFavoritesByUserId(UserModel user)
+            => _context.Favorites.Include(e => e.Estate).Where(f => f.UserId == user.Id).OrderByDescending(f=>f.LikedDate).AsQueryable();
 
     }
 }

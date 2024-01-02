@@ -31,10 +31,13 @@ namespace RealEstate.Services.Interface
         Task<bool> AddCategoriesToDBAsync(CategoryModel model);
         bool UpdateChanges(CategoryModel model);
         bool DeleteCategory(CategoryModel model);
-        IList<CategoryModel> GetCategories();
+        IQueryable<CategoryModel> GetCategories();
         CategoryModel GetCategoryWithId(int? id);
         #endregion
 
+        #region Favories
+        IQueryable<FavoriteModel> GetFavoritesByUserId(UserModel user);
+        #endregion
         #endregion
     }
 }

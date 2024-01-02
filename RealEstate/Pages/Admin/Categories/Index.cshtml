@@ -27,7 +27,7 @@
                 <h4 class="mx-auto fw-bold mb-0">Categories Management</h4>
             </div>
             <div class="card-body">
-                @if (Model.CategoryModel.Any())
+                @if (Model.CategoryList.Any())
                 {
                     <table class="table table-bordered table-striped table-hover mx-auto  text-center">
                         <thead>
@@ -47,7 +47,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.CategoryModel)
+                            @foreach (var item in Model.CategoryList)
                             {
                                 <tr>
                                     <td>@item.Title</td>
@@ -78,6 +78,32 @@
                             }
                         </tbody>
                     </table>
+                    <div class="d-flex justify-content-center">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination mt-2">
+                                @if (Model.CategoryList.HasPreviousPage)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="?pageIndex=@(Model.CategoryList.PageIndex - 1)">&laquo;</a>
+                                    </li>
+                                }
+
+                                @for (int i = 1; i <= Model.CategoryList.TotalPages; i++)
+                                {
+                                    <li class="page-item @(i == Model.CategoryList.PageIndex ? "active" : "")">
+                                        <a class="page-link" href="?pageIndex=@i">@i</a>
+                                    </li>
+                                }
+
+                                @if (Model.CategoryList.HasNextPage)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="?pageIndex=@(Model.CategoryList.PageIndex + 1)">&raquo;</a>
+                                    </li>
+                                }
+                            </ul>
+                        </nav>
+                    </div>
                 }
             </div>
         </div>
