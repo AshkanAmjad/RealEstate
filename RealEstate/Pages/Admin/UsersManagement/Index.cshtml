@@ -1,0 +1,130 @@
+﻿@page
+@model RealEstate.Pages.Admin.UsersManagement.IndexModel
+@{
+    ViewData["Title"] = "Users Management";
+}
+<div class="d-md-none d-flex flex-column">
+    <div class="alert alert-warning  shadow d-flex">
+        <i class="fa fa-warning mx-3 my-1 "></i>
+        <p>
+            The display dimensions are not suitable for your page, Please hold your device horizontally.
+        </p>
+    </div>
+    <img src="/images/icon/rotating-warning.png" class="mx-auto my-4" />
+</div>
+<div class="row my-5 mx-1 mx-sm-5 d-none d-md-flex">
+    <partial name="_PanelPartial" />
+    <div class="col-xl-9 col-12">
+        <div class="card shadow">
+            <div class="card-header d-flex justify-content-center align-items-center">
+                <h4 class="mx-auto fw-bold mb-0">Users Management</h4>
+            </div>
+            <div class="card-body">
+                <form class="row my-2" method="get">
+                    <div class="col-sm-6 col-md-6 my-2 my-sm-0">
+                        <input name="searchContext" placeholder="Enter your context ..." type="text" class="form-control" />
+                    </div>
+                    <div class="col-sm-4 col-md-4 p-0 col-8">
+                        <select class="form-control col-md-4" name="selectedFilter">
+                            <option selected>Choose your filter</option>
+                            <option value="1">Name</option>
+                            <option value="2">Contact</option>
+                            <option value="3">Email</option>
+                            <option value="4">SignUp Date</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-2 col-md-2 col-4">
+                        <button type="submit" class="btn btn-primary fw-bold w-100">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+                @if (Model.UsersList.Any())
+                {
+                    <table class="table table-bordered table-striped table-hover mx-auto  text-center">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <i class="fa fa-user mx-2 d-sm-block d-lg-inline"></i>
+                                    Name
+                                </th>
+                                <th>
+                                    <i class="fa fa-mobile-phone fa-lg mx-2 d-sm-block d-lg-inline"></i>
+                                    Contact
+                                </th>
+                                <th>
+                                    <i class="fa fa fa-envelope mx-2 d-sm-block d-lg-inline"></i>
+                                    Email
+                                </th>
+                                <th>
+                                    <i class="fa fa fa-calendar mx-2 d-sm-block d-lg-inline"></i>
+                                    SignUp
+                                </th>
+                                <th>
+                                    <i class="fa fa-check-square-o mx-2 d-sm-block d-lg-inline"></i>
+                                    Mangement
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.UsersList)
+                            {
+                                <tr>
+                                    <td>
+                                        @item.FullName
+                                    </td>
+                                    <td>
+                                        @item.PhoneNumber
+                                    </td>
+                                    <td>
+                                        @item.Email
+                                    </td>
+                                    <td>
+                                        @item.SignUpDate.Year/@item.SignUpDate.Month/@item.SignUpDate.Day
+                                    </td>
+                                    <td>
+                                        <div class="d-md-flex my-xl-4">
+                                            <a asp-page="Edit" asp-route-Id="@item.Id" class="btn btn-outline-primary col-md-6 col-12 rounded-0 @((User.Identity.Name == item.PhoneNumber)?"mx-auto w-100":"")">
+                                                <i class="fa fa-edit fa-lg"></i>
+                                            </a>
+                                            <a asp-page="Delete" asp-route-Id="@item.Id" class="btn btn-outline-primary col-md-6 col-12 rounded-0 @((User.Identity.Name == item.PhoneNumber)?"d-none":"")">
+                                                <i class="fa fa-trash fa-lg"></i>
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="d-flex justify-content-center">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination mt-2">
+                                @if (Model.UsersList.HasPreviousPage)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="?pageIndex=@(Model.UsersList.PageIndex - 1)">&laquo;</a>
+                                    </li>
+                                }
+
+                                @for (int i = 1; i <= Model.UsersList.TotalPages; i++)
+                                {
+                                    <li class="page-item @(i == Model.UsersList.PageIndex ? "active" : "")">
+                                        <a class="page-link" href="?pageIndex=@i">@i</a>
+                                    </li>
+                                }
+
+                                @if (Model.UsersList.HasNextPage)
+                                {
+                                    <li class="page-item">
+                                        <a class="page-link" href="?pageIndex=@(Model.UsersList.PageIndex + 1)">&raquo;</a>
+                                    </li>
+                                }
+                            </ul>
+                        </nav>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

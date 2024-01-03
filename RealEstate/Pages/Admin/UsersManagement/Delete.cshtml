@@ -1,0 +1,72 @@
+﻿@page
+@model RealEstate.Pages.Admin.UsersManagement.DeleteModel
+@{
+    ViewData["Title"] = "Delete User";
+}
+<div class="row mt-5 mx-sm-5 mx-1">
+    <partial name="_PanelPartial" />
+    <div class="col-xl-9 col-12 mb-5">
+        <div class="card shadow">
+            <div class="card-header d-flex justify-content-center align-items-center">
+                <i class="fa fa-trash fa-lg mx-2"></i>
+                <h4 class="fw-bold mb-0">Delete User</h4>
+            </div>
+            <div class=" card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <input type="hidden" asp-for="ViewModel.Id" />
+                    <div class="row my-3">
+                        <div class="col-xl-6">
+                            <div class="row my-3">
+                                <div class="col-6 col-sm-4">
+                                    <i class="fa fa-check-circle-o fs-7"></i>
+                                    Name :
+                                </div>
+                                <div class="col-6 col-sm-8">
+                                    <input asp-for="ViewModel.UserName" class="form-control" disabled />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 col-sm-4">
+                                    <i class="fa fa-check-circle-o fs-7"></i>
+                                    Contact :
+                                </div>
+                                <div class="col-6 col-sm-8">
+                                    <div class="input-group">
+                                        <input value="@Model.ViewModel.PhoneNumber" class="form-control" disabled />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="row my-3">
+                                <div class="col-6 col-sm-4">
+                                    <i class="fa fa-check-circle-o fs-7"></i>
+                                    Email :
+                                </div>
+                                <div class="col-6 col-sm-8">
+                                    <div class="input-group">
+                                        <input asp-for="ViewModel.Email" class="form-control" disabled placeholder="Enter Metrage ..." />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row col-12 m-0">
+                        <div class="col-12 col-sm-6">
+                            <button class="btn btn-outline-danger w-100 mt-3 disabled" type="submit">
+                                <i class="fa fa-trash mx-2"></i>
+                                Delete
+                            </button>
+                        </div>
+                        <div class="col-12 col-sm-6">
+                            <a asp-page="Index" class="btn btn-outline-secondary w-100 mt-3">
+                                <i class="fa fa-times mx-2"></i>
+                                Cancel
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

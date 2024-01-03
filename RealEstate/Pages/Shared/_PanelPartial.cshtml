@@ -7,10 +7,15 @@
                 <i class="fa fa-home mx-2 "></i>
                 Estates Management
             </a>
-            <a href="/Admin/Categories" class="btn btn-outline-danger rounded-0 rounded-bottom text-start ">
+            <a href="/Admin/UsersManagement" class="btn btn-outline-danger rounded-0 border-bottom-0 text-start ">
+                <i class="fa fa-user mx-2 "></i>
+                Users Management
+            </a>
+            <a href="/Admin/Categories" class="btn btn-outline-danger rounded-0 rounded-bottom  text-start ">
                 <i class="fa fa-list mx-2 "></i>
                 Categories Management
             </a>
+           
         }
         @if (User.IsInRole(Roles.User))
         {

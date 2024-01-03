@@ -28,7 +28,7 @@ namespace RealEstate
             #endregion
 
             #region Authorization
-            builder.Services.AddAuthorization(options=>
+            builder.Services.AddAuthorization(options =>
             {
                 options.AddPolicy(AuthorizationPolicies.AdminPolicy, p => p.RequireRole(Roles.Admin));
             });
@@ -37,13 +37,14 @@ namespace RealEstate
             #region RazorPages
             builder.Services.AddRazorPages(options =>
             {
-                options.Conventions.AuthorizeFolder("/Admin",AuthorizationPolicies.AdminPolicy);
+                options.Conventions.AuthorizeFolder("/Admin", AuthorizationPolicies.AdminPolicy);
             });
             #endregion
 
             #region Scope
             builder.Services.AddScoped<IManagementService, ManagementService>();
             #endregion
+
 
             var app = builder.Build();
 

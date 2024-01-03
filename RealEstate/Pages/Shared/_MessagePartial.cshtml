@@ -60,6 +60,27 @@
             })
         </Script>
     }
+    else if (errorType == "similarityError")
+    {
+        <script>
+            swal.fire({
+                title: 'Error',
+                icon: 'error',
+                text: 'This data is recorded for another user',
+                customClass: {
+                    confirmButton: 'btn btn-danger px-4'
+                },
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutDown'
+
+                },
+                buttonsStyling: false
+            })
+        </Script>
+    }
     else if (errorType == "searchError") {
         <script>
             swal.fire({

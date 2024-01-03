@@ -12,7 +12,7 @@ namespace RealEstate.Pages.Admin.Estates
 {
     public class EditModel : PageModel
     {
-        #region Construvtor
+        #region Constructor
         private readonly ApplicationDbContext _context;
         private readonly IManagementService _managementService;
 

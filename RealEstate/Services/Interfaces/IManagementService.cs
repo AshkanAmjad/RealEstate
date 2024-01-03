@@ -1,10 +1,19 @@
-﻿using RealEstate.Models;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using RealEstate.Models;
 using RealEstate.Models.ViewModels.EstatesViewModels;
 
 namespace RealEstate.Services.Interface
 {
     public interface IManagementService
     {
+        #region Users
+        IQueryable<UserModel> GetUsers();
+        IQueryable<UserModel> FilterUsers(string? searchContext, int? selectedFilter);
+        Task<UserModel> GetUserWithIdAsync(string id);
+        Task<bool> DeleteUserAsync(UserModel model);
+        Task<bool> UpdateUserAsync(UserModel model);
+        #endregion
 
         #region Images
         void Upload(EstateViewModel model);
