@@ -207,9 +207,12 @@ namespace RealEstate.Services.Implementation
             else
                 return false;
         }
-
-
-
-
+        public async Task<bool> AddComment(CommentModel model)
+        { 
+            await _context.Comments.AddAsync(model); 
+            return true;
+        }
+        public async Task<List<CommentModel>> GetComments(int estateId)
+            =>await _context.Comments.Where(c => !c.IsDeleted && c.EstateId == estateId).ToListAsync();
     }
 }

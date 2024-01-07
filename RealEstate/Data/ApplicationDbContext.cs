@@ -14,6 +14,8 @@ namespace RealEstate.Data
         public DbSet<EstateModel> Estate { get; set; }
         public DbSet<CategoryModel> Category { get; set; }
         public DbSet<FavoriteModel> Favorites { get; set; }
+        public DbSet<CommentModel> Comments { get; set; }
+
 
     }
 }

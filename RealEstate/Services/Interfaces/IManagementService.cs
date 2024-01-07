@@ -14,11 +14,16 @@ namespace RealEstate.Services.Interface
         Task<bool> DeleteUserAsync(UserModel model);
         Task<bool> UpdateUserAsync(UserModel model);
         #endregion
-
+        Task<bool> AddComment(CommentModel model);
+        Task<List<CommentModel>> GetComments(int estateId);
         #region Images
         void Upload(EstateViewModel model);
         void deleteImg(EstateViewModel model);
         void deleteImg(EstateModel model);
+
+        #endregion
+
+        #region Comments
 
         #endregion
 

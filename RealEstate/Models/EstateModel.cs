@@ -37,6 +37,7 @@ namespace RealEstate.Models
         #region Relation
         [ForeignKey(nameof(CategoryId))]
         public CategoryModel? Category { get; set; }
+        public List<CommentModel> Comments { get; set; }
         #endregion
     }
 }

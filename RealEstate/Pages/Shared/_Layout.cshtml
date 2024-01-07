@@ -51,17 +51,40 @@
             @RenderBody()
         </main>
     </div>
+    <footer class=" text-center text-muted">
+    <div class="container pb-0">
+        <section class="mb-3">
+                <a data-mdb-ripple-init
+                   class="btn text-white btn-floating m-1"
+                   style="background-color: #0A66C2;"
+                   href="https://www.linkedin.com/in/ashkan-motahari/"
+                   role="button">
+                    <i class="fa fa-linkedin"></i>
+                </a>
+                <a data-mdb-ripple-init
+                   class="btn text-white btn-floating m-1"
+                   style="background-color: #000;"
+                   href="https://github.com/AshkanAmjad"
+                   role="button">
+                    <i class="fa fa-github"></i>
+                </a>
+                <a data-mdb-ripple-init
+                   class="btn text-white btn-floating m-1"
+                   style="background-color: #F48024;"
+                   href="https://stackoverflow.com/users/21545715/ashkan-amjad"
+                   role="button">
+                   <i class="fa fa-stack-overflow"></i>
+                </a>
+        </section>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; <span>@DateTime.Now.Year.ToString()</span> -
-            <i class="fa fa-linkedin me-2"></i><a href="https://www.linkedin.com/in/ashkan-motahari/" class="fs-7 text-muted text-decoration-none">Ashkan Amjad</a>
-        </div>
-    </footer>
+    </div>
+        <div class="text-center p-3 border-top">
+        © @DateTime.Now.Year RealEstate, Inc
+    </div>
+
+</footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    @*     <script src="~/lib/bootstrap/dist/materialJs/mdb.es.min.js"></script>
-    *@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)

@@ -10,5 +10,9 @@ namespace RealEstate.Models
         [MaxLength(200, ErrorMessage = "{0} cannot be longer than {1} characters.")]
         public string FullName { get; set; }
         public DateTime SignUpDate { get; set; }=DateTime.Now;
+
+        #region Relations
+        public List<CommentModel> Comments { get; set; }
+        #endregion
     }
 }
